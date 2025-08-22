@@ -169,3 +169,4 @@ C:\Users\jo\Documents\Aulas - Facul\Banco de Dados II\Atividades\Aula 02\Banco I
 C:\Users\jo\Documents\Aulas - Facul\Banco de Dados II\Atividades\Aula 02\Banco II\Banco II\obj\Debug\net8.0\Banco II.pdb
 C:\Users\jo\Documents\Aulas - Facul\Banco de Dados II\Atividades\Aula 02\Banco II\Banco II\obj\Debug\net8.0\Banco II.genruntimeconfig.cache
 C:\Users\jo\Documents\Aulas - Facul\Banco de Dados II\Atividades\Aula 02\Banco II\Banco II\obj\Debug\net8.0\ref\Banco II.dll
+C:\Users\jo\Documents\Aulas - Facul\Banco de Dados II\Atividades\Aula 02\Banco II\Banco II\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
