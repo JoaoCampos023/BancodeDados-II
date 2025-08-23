@@ -12,7 +12,6 @@ namespace Imobiliaria.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configurações adicionais do modelo podem ser feitas aqui
             modelBuilder.Entity<Imovel>().ToTable("Imovel");
         }
     }

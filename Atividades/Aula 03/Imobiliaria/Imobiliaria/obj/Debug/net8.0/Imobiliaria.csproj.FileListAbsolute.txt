@@ -169,3 +169,4 @@ C:\Users\jo\Documents\Aulas - Facul\Banco de Dados II\Atividades\Aula 03\Imobili
 C:\Users\jo\Documents\Aulas - Facul\Banco de Dados II\Atividades\Aula 03\Imobiliaria\Imobiliaria\obj\Debug\net8.0\Imobiliaria.pdb
 C:\Users\jo\Documents\Aulas - Facul\Banco de Dados II\Atividades\Aula 03\Imobiliaria\Imobiliaria\obj\Debug\net8.0\Imobiliaria.genruntimeconfig.cache
 C:\Users\jo\Documents\Aulas - Facul\Banco de Dados II\Atividades\Aula 03\Imobiliaria\Imobiliaria\obj\Debug\net8.0\ref\Imobiliaria.dll
+C:\Users\jo\Documents\Aulas - Facul\Banco de Dados II\Atividades\Aula 03\Imobiliaria\Imobiliaria\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
