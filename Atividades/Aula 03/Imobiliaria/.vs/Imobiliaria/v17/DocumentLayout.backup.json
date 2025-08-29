@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 03\\Imobiliaria\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aula 03\\imobiliaria\\imobiliaria\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|solutionrelative:imobiliaria\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aula 03\\imobiliaria\\imobiliaria\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|solutionrelative:imobiliaria\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aula 03\\imobiliaria\\imobiliaria\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|solutionrelative:imobiliaria\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aula 03\\imobiliaria\\imobiliaria\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|solutionrelative:imobiliaria\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aula 03\\imobiliaria\\imobiliaria\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|solutionrelative:imobiliaria\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aula 03\\imobiliaria\\imobiliaria\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|solutionrelative:imobiliaria\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C8AEC4A2-D7D3-4365-98F1-C42F5807EEA1}|Imobiliaria\\Imobiliaria.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aula 03\\imobiliaria\\imobiliaria\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,6 +35,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 03\\Imobiliaria\\Imobiliaria\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Imobiliaria\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 03\\Imobiliaria\\Imobiliaria\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Imobiliaria\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-23T01:01:34.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 03\\Imobiliaria\\Imobiliaria\\Program.cs",
               "RelativeDocumentMoniker": "Imobiliaria\\Program.cs",
@@ -43,33 +60,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "DbInitializer.cs",
               "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 03\\Imobiliaria\\Imobiliaria\\Data\\DbInitializer.cs",
               "RelativeDocumentMoniker": "Imobiliaria\\Data\\DbInitializer.cs",
               "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 03\\Imobiliaria\\Imobiliaria\\Data\\DbInitializer.cs",
               "RelativeToolTip": "Imobiliaria\\Data\\DbInitializer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBgAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-23T00:52:10.888Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 03\\Imobiliaria\\Imobiliaria\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Imobiliaria\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 03\\Imobiliaria\\Imobiliaria\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Imobiliaria\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBQAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-23T00:51:10.443Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 03\\Imobiliaria\\Imobiliaria\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Imobiliaria\\Data\\AppDbContext.cs",
