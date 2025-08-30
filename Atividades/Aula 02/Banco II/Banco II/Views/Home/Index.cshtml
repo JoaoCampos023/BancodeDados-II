@@ -10,6 +10,7 @@
         @Model.Count estudante.
     </h1>
 
+    <a asp-controller="Home" asp-action="Create">Novo</a>
     <table class=" table table-responsive table-hover table-striped">
         <thead>
             <tr>
@@ -27,6 +28,12 @@
                     <td>@s.FirstMidName</td>
                     <td>@s.LastName</td>
                     <td>@s.EnrollmentDate.ToShortDateString()</td>
+                    <td>
+                        <form asp-controller="Home" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@s.ID"></input>
+                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>

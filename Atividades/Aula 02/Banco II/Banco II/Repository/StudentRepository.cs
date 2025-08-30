@@ -14,13 +14,12 @@ namespace Banco_II.Repository
             _context = context;
         }
 
-        public async void Create(Student student)
+        public async Task Create(Student student)
         {
             await _context.Students.AddAsync(student);
             await _context.SaveChangesAsync();
         }
-
-        public async void Delete(Student student)
+        public async Task Delete(Student student)
         {
             _context.Students.Remove(student);
             await _context.SaveChangesAsync();
@@ -44,9 +43,10 @@ namespace Banco_II.Repository
             return students;
         }
 
-        public async void Update(Student student)
+        public async Task Update(Student student)
         {
-            
+           _context.Students.Update(student);
+            await _context.SaveChangesAsync();
         }
     }
 }
