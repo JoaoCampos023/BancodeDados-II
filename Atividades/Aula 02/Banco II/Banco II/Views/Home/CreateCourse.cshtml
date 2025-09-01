@@ -1,0 +1,19 @@
+﻿@model Banco_II.Models.Course
+
+@{
+    ViewData["Title"] = "Novo Curso";
+}
+
+<h2>Novo Curso</h2>
+
+<form asp-action="CreateCourse">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Nome do Curso</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-success">Criar</button>
+        <a asp-action="Courses" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>

@@ -12,5 +12,9 @@ namespace Banco_II.Models
 
         public List<StudentCourses>? StudentCourses { get; set; }
 
+        // Propriedade calculada para nome completo
+        [Display(Name = "Nome Completo")]
+        public string FullName => $"{FirstMidName} {LastName}";
+
     }
 }

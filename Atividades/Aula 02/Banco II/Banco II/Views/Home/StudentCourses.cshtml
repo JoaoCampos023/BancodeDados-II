@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Banco_II.Models.StudentCourses>
+
+@{
+    ViewData["Title"] = "Matrículas de Estudantes";
+}
+
+<h2>Matrículas de Estudantes</h2>
+
+<p>
+    <a asp-action="CreateStudentCourse" class="btn btn-primary">Nova Matrícula</a>
+    <a asp-action="Courses" class="btn btn-secondary">Ver Cursos</a>
+    <a asp-action="Index" class="btn btn-secondary">Ver Estudantes</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Estudante</th>
+            <th>Curso</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Student?.FirstMidName</td>
+                <td>@item.Course?.Name</td>
+                <td>
+                    <form asp-action="DeleteStudentCourse" method="post" class="d-inline">
+                        <input type="hidden" name="studentId" value="@item.StudentID" />
+                        <input type="hidden" name="courseId" value="@item.CourseID" />
+                        <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Tem certeza que deseja remover esta matrícula?')">
+                            Remover
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

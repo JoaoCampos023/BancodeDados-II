@@ -45,7 +45,7 @@ namespace Banco_II.Repository
 
         public async Task Update(Student student)
         {
-           _context.Students.Update(student);
+            _context.Students.Update(student);
             await _context.SaveChangesAsync();
         }
     }

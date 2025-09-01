@@ -1,23 +1,28 @@
 ﻿@model ICollection<Banco_II.Models.Student>
 
-
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">
-        @Model.Count estudante.
+        @Model.Count estudante(s).
     </h1>
 
-    <a asp-controller="Home" asp-action="Create">Novo</a>
-    <table class=" table table-responsive table-hover table-striped">
+    <div class="mb-3">
+        <a asp-controller="Home" asp-action="Create" class="btn btn-primary">Novo Estudante</a>
+        <a asp-controller="Home" asp-action="Courses" class="btn btn-info">Ver Cursos</a>
+        <a asp-controller="Home" asp-action="StudentCourses" class="btn btn-warning">Ver Matrículas</a>
+    </div>
+
+    <table class="table table-responsive table-hover table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Sobrenome</th>
                 <th>Data Matricula</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -29,15 +34,19 @@
                     <td>@s.LastName</td>
                     <td>@s.EnrollmentDate.ToShortDateString()</td>
                     <td>
-                        <form asp-controller="Home" asp-action="Delete" method="post">
-                            <input type="hidden" name="id" value="@s.ID"></input>
-                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-                        </form>
+                        <div class="btn-group" role="group">
+                            <a asp-action="Edit" asp-route-id="@s.ID" class="btn btn-warning btn-sm">Editar</a>
+                            <form asp-action="Delete" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@s.ID">
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Tem certeza que deseja excluir este estudante?')">
+                                    Excluir
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             }
         </tbody>
-
     </table>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

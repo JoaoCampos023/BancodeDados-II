@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Banco_II.Models.Course>
+
+@{
+    ViewData["Title"] = "Cursos";
+}
+
+<h2>Cursos</h2>
+
+<p>
+    <a asp-action="CreateCourse" class="btn btn-primary">Novo Curso</a>
+    <a asp-action="Index" class="btn btn-secondary">Voltar para Estudantes</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Name</td>
+                <td>
+                    <a asp-action="EditCourse" asp-route-id="@item.ID" class="btn btn-warning btn-sm">Editar</a>
+                    <form asp-action="DeleteCourse" method="post" class="d-inline">
+                        <input type="hidden" name="id" value="@item.ID" />
+                        <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Tem certeza que deseja excluir este curso?')">
+                            Excluir
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

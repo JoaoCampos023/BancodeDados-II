@@ -1,0 +1,20 @@
+﻿@model Banco_II.Models.Course
+
+@{
+    ViewData["Title"] = "Editar Curso";
+}
+
+<h2>Editar Curso</h2>
+
+<form asp-action="EditCourse">
+    <input type="hidden" asp-for="ID" />
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Nome do Curso</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a asp-action="Courses" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>

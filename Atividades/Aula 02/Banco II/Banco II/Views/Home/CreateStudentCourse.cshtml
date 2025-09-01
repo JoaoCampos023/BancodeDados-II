@@ -1,0 +1,49 @@
+﻿@model Banco_II.Models.StudentCourses
+
+@{
+    ViewData["Title"] = "Nova Matrícula";
+}
+
+<h2>Nova Matrícula</h2>
+
+@if (ViewBag.Students == null || ViewBag.Courses == null)
+{
+    <div class="alert alert-warning">
+        <h4>Erro ao carregar dados</h4>
+        <p>Não foi possível carregar a lista de estudantes ou cursos.</p>
+        <p>Verifique se existem estudantes e cursos cadastrados.</p>
+        <a asp-action="Index" class="btn btn-primary">Cadastrar Estudantes</a>
+        <a asp-action="Courses" class="btn btn-primary">Cadastrar Cursos</a>
+    </div>
+}
+else
+{
+    <form asp-action="CreateStudentCourse">
+        <div class="form-group">
+            <label asp-for="StudentID" class="control-label">Estudante</label>
+            <select asp-for="StudentID" class="form-control" asp-items="ViewBag.Students">
+                <option value="">-- Selecione o Estudante --</option>
+            </select>
+            <span asp-validation-for="StudentID" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CourseID" class="control-label">Curso</label>
+            <select asp-for="CourseID" class="form-control" asp-items="ViewBag.Courses">
+                <option value="">-- Selecione o Curso --</option>
+            </select>
+            <span asp-validation-for="CourseID" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-success">Matricular</button>
+            <a asp-action="StudentCourses" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
