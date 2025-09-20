@@ -4,6 +4,7 @@ using Banco_II.Models;
 using Banco_II.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Banco_II.Controllers
 {
@@ -14,18 +15,21 @@ namespace Banco_II.Controllers
         private readonly IStudentRepository _studentRepository;
         private readonly ICourseRepository _courseRepository;
         private readonly IStudentCoursesRepository _studentCoursesRepository;
+        private readonly ISubjectRepository _subjectRepository;
 
         public HomeController(
             ILogger<HomeController> logger,
             IStudentRepository studentRepository,
             ICourseRepository courseRepository,
-            IStudentCoursesRepository studentCoursesRepository
+            IStudentCoursesRepository studentCoursesRepository,
+            ISubjectRepository subjectRepository
         )
         {
             _logger = logger;
             _studentRepository = studentRepository;
             _courseRepository = courseRepository;
             _studentCoursesRepository = studentCoursesRepository;
+            _subjectRepository = subjectRepository;
         }
 
         public async Task<IActionResult> Index()
@@ -137,7 +141,11 @@ namespace Banco_II.Controllers
                     // Verifica se a relação já existe
                     if (await _studentCoursesRepository.Exists(studentCourse.StudentID, studentCourse.CourseID))
                     {
-                        ModelState.AddModelError("", "Este estudante já está matriculado neste curso.");
+                        // Obter informações do estudante e curso para a mensagem
+                        var student = await _studentRepository.GetById(studentCourse.StudentID);
+                        var course = await _courseRepository.GetById(studentCourse.CourseID);
+
+                        ModelState.AddModelError("", $"O aluno {student?.FullName} já está matriculado no curso {course?.Name}.");
                         Console.WriteLine("Matrícula já existe");
                     }
                     else
@@ -183,6 +191,98 @@ namespace Banco_II.Controllers
             }
             await _studentCoursesRepository.Delete(studentCourse);
             return RedirectToAction("StudentCourses");
+        }
+
+        // LISTA DE MATÉRIAS DE UM CURSO
+        public async Task<IActionResult> Subjects(int courseId)
+        {
+            var course = await _courseRepository.GetById(courseId);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Course = course;
+            var subjects = await _subjectRepository.GetSubjectsByCourseId(courseId);
+            return View(subjects);
+        }
+
+        // CREATE SUBJECT - GET
+        // LISTA DE MATÉRIAS DE UM CURSO
+        public async Task<IActionResult> Subject(int courseId)
+        {
+            var course = await _courseRepository.GetById(courseId);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Course = course;
+            var subjects = await _subjectRepository.GetSubjectsByCourseId(courseId);
+            return View(subjects);
+        }
+
+        // CREATE SUBJECT - POST
+        [HttpPost]
+        public async Task<IActionResult> CreateSubject(Subject subject)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _subjectRepository.Create(subject);
+                    return RedirectToAction("Subjects", new { courseId = subject.CourseID });
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", $"Erro ao criar matéria: {ex.Message}");
+                    _logger.LogError(ex, "Erro ao criar matéria");
+                }
+            }
+
+            var course = await _courseRepository.GetById(subject.CourseID);
+            ViewBag.Course = course;
+            return View(subject);
+        }
+
+        // EDIT SUBJECT - GET
+        [HttpGet]
+        public async Task<IActionResult> EditSubject(int id)
+        {
+            var subject = await _subjectRepository.GetById(id);
+            if (subject == null)
+            {
+                return NotFound();
+            }
+
+            return View(subject);
+        }
+
+        // EDIT SUBJECT - POST
+        [HttpPost]
+        public async Task<IActionResult> EditSubject(Subject subject)
+        {
+            if (ModelState.IsValid)
+            {
+                await _subjectRepository.Update(subject);
+                return RedirectToAction("Subjects", new { courseId = subject.CourseID });
+            }
+
+            return View(subject);
+        }
+
+        // DELETE SUBJECT - POST
+        [HttpPost]
+        public async Task<IActionResult> DeleteSubject(int id)
+        {
+            var subject = await _subjectRepository.GetById(id);
+            if (subject == null)
+            {
+                return NotFound();
+            }
+
+            await _subjectRepository.Delete(subject);
+            return RedirectToAction("Subjects", new { courseId = subject.CourseID });
         }
 
 

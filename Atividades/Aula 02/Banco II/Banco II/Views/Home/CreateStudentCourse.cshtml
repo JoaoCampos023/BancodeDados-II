@@ -18,6 +18,20 @@
 }
 else
 {
+    <!-- Exibir mensagens de erro de validação -->
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <h5>Erros de validação:</h5>
+            <ul>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
     <form asp-action="CreateStudentCourse">
         <div class="form-group">
             <label asp-for="StudentID" class="control-label">Estudante</label>

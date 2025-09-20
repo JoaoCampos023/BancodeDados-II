@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Banco_II.Models.Subject>
+@{
+    ViewData["Title"] = "Matérias do Curso";
+    var course = ViewBag.Course as Banco_II.Models.Course;
+}
+
+<h1>Matérias do Curso: @course?.Name</h1>
+
+<p>
+    <a asp-action="CreateSubject" asp-route-courseId="@course?.ID" class="btn btn-primary">Nova Matéria</a>
+    <a asp-action="Courses" class="btn btn-secondary">Voltar para Cursos</a>
+</p>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Nenhuma matéria cadastrada para este curso.
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        <a asp-action="EditSubject" asp-route-id="@item.ID" class="btn btn-warning btn-sm">Editar</a>
+                        <form asp-action="DeleteSubject" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@item.ID" />
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Tem certeza que deseja excluir esta matéria?')">
+                                Excluir
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

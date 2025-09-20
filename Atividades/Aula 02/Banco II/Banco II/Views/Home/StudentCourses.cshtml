@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Banco_II.Models.StudentCourses>
-
 @{
     ViewData["Title"] = "Matrículas de Estudantes";
 }
@@ -8,35 +7,44 @@
 
 <p>
     <a asp-action="CreateStudentCourse" class="btn btn-primary">Nova Matrícula</a>
-    <a asp-action="Courses" class="btn btn-secondary">Ver Cursos</a>
+    <a asp-action="Courses" class="btn btn-info">Ver Cursos e Matérias</a>
     <a asp-action="Index" class="btn btn-secondary">Ver Estudantes</a>
 </p>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Estudante</th>
-            <th>Curso</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Nenhuma matrícula encontrada.
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>@item.Student?.FirstMidName</td>
-                <td>@item.Course?.Name</td>
-                <td>
-                    <form asp-action="DeleteStudentCourse" method="post" class="d-inline">
-                        <input type="hidden" name="studentId" value="@item.StudentID" />
-                        <input type="hidden" name="courseId" value="@item.CourseID" />
-                        <button type="submit" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Tem certeza que deseja remover esta matrícula?')">
-                            Remover
-                        </button>
-                    </form>
-                </td>
+                <th>Estudante</th>
+                <th>Curso</th>
+                <th>Ações</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Student?.FullName</td>
+                    <td>@item.Course?.Name</td>
+                    <td>
+                        <form asp-action="DeleteStudentCourse" method="post" class="d-inline">
+                            <input type="hidden" name="studentId" value="@item.StudentID" />
+                            <input type="hidden" name="courseId" value="@item.CourseID" />
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Tem certeza que deseja remover esta matrícula?')">
+                                Remover
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

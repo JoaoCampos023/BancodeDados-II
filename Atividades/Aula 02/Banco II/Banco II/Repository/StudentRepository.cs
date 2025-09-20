@@ -48,5 +48,12 @@ namespace Banco_II.Repository
             _context.Students.Update(student);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Subject>> GetSubjectReport(int courseId)
+        {
+            return await _context.Subjects
+                .Where(s => s.CourseID == courseId) // Verifique se o nome da coluna está correto
+                .ToListAsync();
+        }
     }
 }

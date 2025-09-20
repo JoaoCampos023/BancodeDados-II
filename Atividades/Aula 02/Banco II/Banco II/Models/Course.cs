@@ -9,5 +9,6 @@ namespace Banco_II.Models
         public string? Name { get; set; }
 
         public List<StudentCourses>? StudentCourses { get; set; }
+        public virtual ICollection<Subject> Subjects { get; set; }
     }
 }

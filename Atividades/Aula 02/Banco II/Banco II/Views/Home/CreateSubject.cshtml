@@ -1,0 +1,30 @@
+﻿@model Banco_II.Models.Subject
+@{
+    ViewData["Title"] = "Nova Matéria";
+    var course = ViewBag.Course as Banco_II.Models.Course;
+}
+
+<h1>Nova Matéria para o Curso: @course?.Name</h1>
+
+<form asp-action="CreateSubject">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Nome da Matéria</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="CourseID" value="@course?.ID" />
+
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Criar</button>
+        <a asp-action="Subjects" asp-route-courseId="@course?.ID" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Banco_II.Models.Course>
-
 @{
     ViewData["Title"] = "Cursos";
 }
@@ -16,6 +15,7 @@
         <tr>
             <th>ID</th>
             <th>Nome</th>
+            <th>Matérias</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -25,6 +25,11 @@
             <tr>
                 <td>@item.ID</td>
                 <td>@item.Name</td>
+                <td>
+                    <a asp-action="Subjects" asp-route-courseId="@item.ID" class="btn btn-info btn-sm">
+                        Ver Matérias (@item.Subjects?.Count)
+                    </a>
+                </td>
                 <td>
                     <a asp-action="EditCourse" asp-route-id="@item.ID" class="btn btn-warning btn-sm">Editar</a>
                     <form asp-action="DeleteCourse" method="post" class="d-inline">
