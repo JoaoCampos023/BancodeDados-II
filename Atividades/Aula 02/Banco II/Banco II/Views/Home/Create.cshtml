@@ -1,47 +1,93 @@
 ﻿@model Banco_II.Models.Student
-
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-gradient-primary text-white py-3">
+                    <h3 class="card-title mb-0 text-center">
+                        <i class="fas fa-user-plus me-2"></i>Cadastrar Novo Estudante
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create" class="needs-validation" novalidate>
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
-<h4>Student</h4>
+                        <div class="form-group mb-4">
+                            <label asp-for="FirstMidName" class="form-label fw-bold">
+                                <i class="fas fa-user me-1"></i>Primeiro Nome
+                            </label>
+                            <input asp-for="FirstMidName" class="form-control form-control-lg"
+                                   placeholder="Digite o primeiro nome" required />
+                            <span asp-validation-for="FirstMidName" class="text-danger small"></span>
+                        </div>
 
-<hr>
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group mb-4">
+                            <label asp-for="LastName" class="form-label fw-bold">
+                                <i class="fas fa-user-tag me-1"></i>Sobrenome
+                            </label>
+                            <input asp-for="LastName" class="form-control form-control-lg"
+                                   placeholder="Digite o sobrenome" required />
+                            <span asp-validation-for="LastName" class="text-danger small"></span>
+                        </div>
 
-            <div class="form-group">
-                <label asp-for="FirstMidName" class="control-label"></label>
-                <input asp-for="FirstMidName" class="form-control" />
-                <span asp-validation-for="FirstMidName" class="text-danger"></span>
+                        <div class="form-group mb-4">
+                            <label asp-for="EnrollmentDate" class="form-label fw-bold">
+                                <i class="fas fa-calendar-alt me-1"></i>Data de Matrícula
+                            </label>
+                            <input asp-for="EnrollmentDate" class="form-control form-control-lg"
+                                   type="date" required />
+                            <span asp-validation-for="EnrollmentDate" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-group mt-4 text-center">
+                            <button type="submit" class="btn btn-success btn-lg me-3 px-4">
+                                <i class="fas fa-save me-2"></i>Salvar Estudante
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary btn-lg px-4">
+                                <i class="fas fa-arrow-left me-2"></i>Voltar
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="EnrollmentDate" class="control-label"></label>
-                <input asp-for="EnrollmentDate" class="form-control" type="date" />
-                <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
-<hr>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<style>
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    }
+
+    .card {
+        border-radius: 1rem;
+        overflow: hidden;
+    }
+
+    .form-control-lg {
+        border-radius: 0.5rem;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+    }
+
+        .form-control-lg:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+
+    .btn-lg {
+        border-radius: 0.5rem;
+        padding: 0.75rem 2rem;
+        font-weight: 600;
+    }
+</style>

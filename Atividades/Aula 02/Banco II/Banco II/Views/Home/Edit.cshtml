@@ -1,31 +1,47 @@
 ﻿@model Banco_II.Models.Student
-
 @{
     ViewData["Title"] = "Editar Estudante";
 }
 
-<h2>Editar Estudante</h2>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-edit me-2"></i>Editar Estudante
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit">
+                        <input type="hidden" asp-for="ID" />
 
-<form asp-action="Edit">
-    <input type="hidden" asp-for="ID" />
+                        <div class="form-group mb-4">
+                            <label asp-for="FirstMidName" class="control-label fw-bold">Nome</label>
+                            <input asp-for="FirstMidName" class="form-control" />
+                            <span asp-validation-for="FirstMidName" class="text-danger"></span>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="FirstMidName" class="control-label">Nome</label>
-        <input asp-for="FirstMidName" class="form-control" />
-        <span asp-validation-for="FirstMidName" class="text-danger"></span>
+                        <div class="form-group mb-4">
+                            <label asp-for="LastName" class="control-label fw-bold">Sobrenome</label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mt-4 text-center">
+                            <button type="submit" class="btn btn-primary btn-lg me-3">
+                                <i class="fas fa-save me-1"></i>Salvar
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-arrow-left me-1"></i>Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="LastName" class="control-label">Sobrenome</label>
-        <input asp-for="LastName" class="form-control" />
-        <span asp-validation-for="LastName" class="text-danger"></span>
-    </div>
-
-    <div class="form-group mt-3">
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-    </div>
-</form>
+</div>
 
 @section Scripts {
     @{

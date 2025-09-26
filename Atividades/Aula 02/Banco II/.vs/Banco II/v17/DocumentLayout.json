@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 02\\Banco II\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{30F45A26-7B4E-4D08-9C56-8A9CF73430C1}|Banco II\\Banco II.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aula 02\\banco ii\\banco ii\\views\\home\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{30F45A26-7B4E-4D08-9C56-8A9CF73430C1}|Banco II\\Banco II.csproj|solutionrelative:banco ii\\views\\home\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30F45A26-7B4E-4D08-9C56-8A9CF73430C1}|Banco II\\Banco II.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aula 02\\banco ii\\banco ii\\views\\home\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{30F45A26-7B4E-4D08-9C56-8A9CF73430C1}|Banco II\\Banco II.csproj|solutionrelative:banco ii\\views\\home\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30F45A26-7B4E-4D08-9C56-8A9CF73430C1}|Banco II\\Banco II.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aula 02\\banco ii\\banco ii\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{30F45A26-7B4E-4D08-9C56-8A9CF73430C1}|Banco II\\Banco II.csproj|solutionrelative:banco ii\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +22,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 02\\Banco II\\Banco II\\Views\\Home\\Create.cshtml",
+              "RelativeDocumentMoniker": "Banco II\\Views\\Home\\Create.cshtml",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 02\\Banco II\\Banco II\\Views\\Home\\Create.cshtml",
+              "RelativeToolTip": "Banco II\\Views\\Home\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFwAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-26T17:10:17.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Courses.cshtml",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 02\\Banco II\\Banco II\\Views\\Home\\Courses.cshtml",
+              "RelativeDocumentMoniker": "Banco II\\Views\\Home\\Courses.cshtml",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 02\\Banco II\\Banco II\\Views\\Home\\Courses.cshtml",
+              "RelativeToolTip": "Banco II\\Views\\Home\\Courses.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-26T17:09:46.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 02\\Banco II\\Banco II\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Banco II\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aula 02\\Banco II\\Banco II\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Banco II\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAJAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-26T17:08:56.735Z",
+              "EditorCaption": ""
             }
           ]
         }

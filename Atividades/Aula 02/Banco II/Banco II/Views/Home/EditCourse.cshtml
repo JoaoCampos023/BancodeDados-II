@@ -1,27 +1,42 @@
 ﻿@model Banco_II.Models.Course
-
 @{
     ViewData["Title"] = "Editar Curso";
 }
 
-<h2>Editar Curso</h2>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-edit me-2"></i>Editar Curso
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <a asp-action="Subjects" asp-route-courseId="@Model.ID" class="btn btn-info">
+                            <i class="fas fa-cogs me-1"></i>Gerenciar Matérias
+                        </a>
+                    </div>
 
-<div class="mb-3">
-    <!-- CORRIGIR: Usar ViewBag para contar matérias -->
-    <a asp-action="Subjects" asp-route-courseId="@Model.ID" class="btn btn-info">
-        Gerenciar Matérias
-    </a>
+                    <form asp-action="EditCourse">
+                        <input type="hidden" asp-for="ID" />
+                        <div class="form-group mb-4">
+                            <label asp-for="Name" class="control-label fw-bold">Nome do Curso</label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mt-4 text-center">
+                            <button type="submit" class="btn btn-primary btn-lg me-3">
+                                <i class="fas fa-save me-1"></i>Salvar
+                            </button>
+                            <a asp-action="Courses" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-times me-1"></i>Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<form asp-action="EditCourse">
-    <input type="hidden" asp-for="ID" />
-    <div class="form-group">
-        <label asp-for="Name" class="control-label">Nome do Curso</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group mt-3">
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <a asp-action="Courses" class="btn btn-secondary">Cancelar</a>
-    </div>
-</form>

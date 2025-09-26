@@ -1,19 +1,35 @@
 ﻿@model Banco_II.Models.Course
-
 @{
     ViewData["Title"] = "Novo Curso";
 }
 
-<h2>Novo Curso</h2>
-
-<form asp-action="CreateCourse">
-    <div class="form-group">
-        <label asp-for="Name" class="control-label">Nome do Curso</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-book me-2"></i>Novo Curso
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="CreateCourse">
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label fw-bold">Nome do Curso</label>
+                            <input asp-for="Name" class="form-control form-control-lg" placeholder="Digite o nome do curso" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mt-4">
+                            <button type="submit" class="btn btn-success btn-lg me-2">
+                                <i class="fas fa-check me-1"></i>Criar
+                            </button>
+                            <a asp-action="Courses" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-times me-1"></i>Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group mt-3">
-        <button type="submit" class="btn btn-success">Criar</button>
-        <a asp-action="Courses" class="btn btn-secondary">Cancelar</a>
-    </div>
-</form>
+</div>

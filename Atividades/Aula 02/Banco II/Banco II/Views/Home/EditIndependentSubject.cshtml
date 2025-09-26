@@ -1,34 +1,59 @@
 ﻿@model Banco_II.Models.Subject
 @{
     ViewData["Title"] = "Editar Matéria";
+    var courses = ViewBag.Courses as IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>;
 }
 
-<h1>Editar Matéria</h1>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-edit me-2"></i>Editar Matéria
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="EditIndependentSubject">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<form asp-action="EditIndependentSubject">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ID" />
 
-    <input type="hidden" asp-for="ID" />
+                        <div class="form-group mb-4">
+                            <label asp-for="Name" class="control-label fw-bold">Nome da Matéria</label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="Name" class="control-label">Nome da Matéria</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+                        <div class="form-group mb-4">
+                            <label asp-for="CourseID" class="control-label fw-bold">Curso</label>
+                            <select asp-for="CourseID" class="form-select">
+                                <option value="">-- Selecione o Curso --</option>
+                                @if (courses != null)
+                                {
+                                    @foreach (var course in courses)
+                                    {
+                                        <option value="@course.Value">@course.Text</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="CourseID" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mt-4 text-center">
+                            <button type="submit" class="btn btn-primary btn-lg me-3">
+                                <i class="fas fa-save me-1"></i>Salvar Alterações
+                            </button>
+                            <a asp-action="AllSubjects" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-times me-1"></i>Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="CourseID" class="control-label">Curso</label>
-        <select asp-for="CourseID" class="form-control" asp-items="ViewBag.Courses">
-            <option value="">-- Selecione o Curso --</option>
-        </select>
-        <span asp-validation-for="CourseID" class="text-danger"></span>
-    </div>
-
-    <div class="form-group mt-3">
-        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-        <a asp-action="AllSubjects" class="btn btn-secondary">Cancelar</a>
-    </div>
-</form>
+</div>
 
 @section Scripts {
     @{
