@@ -6,14 +6,34 @@
 
 <h1>Matérias do Curso: @course?.Name</h1>
 
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<!-- ALTERAÇÃO AQUI: REMOVER o botão "Nova Matéria" -->
 <p>
-    <a asp-action="CreateSubject" asp-route-courseId="@course?.ID" class="btn btn-primary">Nova Matéria</a>
+    <!-- BOTÃO REMOVIDO: <a asp-action="CreateSubject" asp-route-courseId="@course?.ID" class="btn btn-primary">Nova Matéria</a> -->
     <a asp-action="Courses" class="btn btn-secondary">Voltar para Cursos</a>
 </p>
 
+<!-- Debug info -->
+<div class="alert alert-info">
+    <small>Curso ID: @course?.ID | Matérias encontradas: @Model.Count()</small>
+</div>
+
 @if (!Model.Any())
 {
-    <div class="alert alert-info">
+    <div class="alert alert-warning">
         Nenhuma matéria cadastrada para este curso.
     </div>
 }
@@ -22,6 +42,7 @@ else
     <table class="table table-striped">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Nome</th>
                 <th>Ações</th>
             </tr>
@@ -30,6 +51,7 @@ else
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>@item.ID</td>
                     <td>@item.Name</td>
                     <td>
                         <a asp-action="EditSubject" asp-route-id="@item.ID" class="btn btn-warning btn-sm">Editar</a>

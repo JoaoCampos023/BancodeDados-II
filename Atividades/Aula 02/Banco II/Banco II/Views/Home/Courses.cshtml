@@ -8,6 +8,14 @@
 <p>
     <a asp-action="CreateCourse" class="btn btn-primary">Novo Curso</a>
     <a asp-action="Index" class="btn btn-secondary">Voltar para Estudantes</a>
+    <a asp-action="AllSubjects" class="btn btn-success">Ver Todas as Matérias</a>
+
+    <form asp-action="CleanOrphanedSubjects" method="post" class="d-inline">
+        <button type="submit" class="btn btn-warning"
+                onclick="return confirm('Isso irá remover matérias sem curso válido. Continuar?')">
+            Limpar Matérias Órfãs
+        </button>
+    </form>
 </p>
 
 <table class="table table-striped">
@@ -20,20 +28,38 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var course in Model)
         {
             <tr>
-                <td>@item.ID</td>
-                <td>@item.Name</td>
+                <td>@course.ID</td>
+                <td>@course.Name</td>
                 <td>
-                    <a asp-action="Subjects" asp-route-courseId="@item.ID" class="btn btn-info btn-sm">
-                        Ver Matérias (@item.Subjects?.Count)
+                    @if (course.Subjects != null && course.Subjects.Any())
+                    {
+                        <div>
+                            <strong>Matérias (@course.Subjects.Count):</strong>
+                            <ul class="list-unstyled">
+                                @foreach (var subject in course.Subjects)
+                                {
+                                    <li>• @subject.Name</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Nenhuma matéria</span>
+                    }
+
+                    <!-- CORREÇÃO AQUI: Remover o "t" extra e corrigir o asp-route -->
+                    <a asp-action="Subjects" asp-route-courseId="@course.ID" class="btn btn-info btn-sm mt-1">
+                        Gerenciar Matérias
                     </a>
                 </td>
                 <td>
-                    <a asp-action="EditCourse" asp-route-id="@item.ID" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="EditCourse" asp-route-id="@course.ID" class="btn btn-warning btn-sm">Editar</a>
                     <form asp-action="DeleteCourse" method="post" class="d-inline">
-                        <input type="hidden" name="id" value="@item.ID" />
+                        <input type="hidden" name="id" value="@course.ID" />
                         <button type="submit" class="btn btn-danger btn-sm"
                                 onclick="return confirm('Tem certeza que deseja excluir este curso?')">
                             Excluir

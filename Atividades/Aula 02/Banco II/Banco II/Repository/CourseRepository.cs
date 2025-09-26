@@ -16,12 +16,20 @@ namespace Banco_II.Repository
 
         public async Task<IEnumerable<Course>> GetAll()
         {
-            return await _context.Courses.ToListAsync();
+            return await _context.Courses
+                .Include(c => c.Subjects)
+                .Include(c => c.StudentCourses)
+                .ThenInclude(sc => sc.Student)
+                .ToListAsync();
         }
 
         public async Task<Course> GetById(int id)
         {
-            return await _context.Courses.FindAsync(id);
+            return await _context.Courses
+                .Include(c => c.Subjects)  // Carregar matérias
+                .Include(c => c.StudentCourses)
+                .ThenInclude(sc => sc.Student)
+                .FirstOrDefaultAsync(c => c.ID == id);
         }
 
         public async Task Create(Course course)

@@ -7,8 +7,9 @@
 <h2>Editar Curso</h2>
 
 <div class="mb-3">
+    <!-- CORRIGIR: Usar ViewBag para contar matérias -->
     <a asp-action="Subjects" asp-route-courseId="@Model.ID" class="btn btn-info">
-        Gerenciar Matérias (@Model.Subjects?.Count)
+        Gerenciar Matérias
     </a>
 </div>
 

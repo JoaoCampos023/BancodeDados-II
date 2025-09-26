@@ -10,5 +10,6 @@ namespace Banco_II.Repository
         Task Update(Subject subject);
         Task Delete(Subject subject);
         Task<IEnumerable<Subject>> GetSubjectsByCourseId(int courseId);
+        Task<IEnumerable<Subject>> GetAllWithCourses();
     }
 }

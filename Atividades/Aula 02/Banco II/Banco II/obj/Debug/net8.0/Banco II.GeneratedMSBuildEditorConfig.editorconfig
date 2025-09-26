@@ -28,6 +28,10 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aula 02/Banco II/Banco II/Views/Home/AllSubjects.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBbGxTdWJqZWN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aula 02/Banco II/Banco II/Views/Home/CheckData.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDaGVja0RhdGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,12 +48,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVDb3Vyc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aula 02/Banco II/Banco II/Views/Home/CreateStudentCourse.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVTdHVkZW50Q291cnNlLmNzaHRtbA==
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aula 02/Banco II/Banco II/Views/Home/CreateIndependentSubject.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVJbmRlcGVuZGVudFN1YmplY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aula 02/Banco II/Banco II/Views/Home/CreateSubject.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVTdWJqZWN0LmNzaHRtbA==
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aula 02/Banco II/Banco II/Views/Home/CreateStudentCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVTdHVkZW50Q291cnNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aula 02/Banco II/Banco II/Views/Home/Edit.cshtml]
@@ -60,8 +64,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0Q291cnNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aula 02/Banco II/Banco II/Views/Home/EditSubject.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0U3ViamVjdC5jc2h0bWw=
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aula 02/Banco II/Banco II/Views/Home/EditIndependentSubject.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0SW5kZXBlbmRlbnRTdWJqZWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aula 02/Banco II/Banco II/Views/Home/Index.cshtml]

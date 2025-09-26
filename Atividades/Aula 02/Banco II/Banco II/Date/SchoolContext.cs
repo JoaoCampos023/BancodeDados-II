@@ -17,13 +17,18 @@ namespace Banco_II.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Student>().ToTable("Student");
-            modelBuilder.Entity<Course>().ToTable("Course");
-            modelBuilder.Entity<Subject>()
-                .HasOne(s => s.Course)
-                .WithMany(c => c.Subjects)
+            // Configurar a chave composta para StudentCourses
+            modelBuilder.Entity<StudentCourses>()
+                .HasKey(sc => new { sc.StudentID, sc.CourseID });
+
+            // CORREÇÃO: Configurar relação Course -> Subjects CORRETAMENTE
+            modelBuilder.Entity<Course>()
+                .HasMany(c => c.Subjects)
+                .WithOne(s => s.Course)
                 .HasForeignKey(s => s.CourseID)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Cascade); // Isso garante que se o curso for deletado, as matérias também serão
+
+            base.OnModelCreating(modelBuilder);
         }
 
     }

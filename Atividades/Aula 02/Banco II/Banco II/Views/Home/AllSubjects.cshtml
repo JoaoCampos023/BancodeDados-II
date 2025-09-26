@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Banco_II.Models.Subject>
+@{
+    ViewData["Title"] = "Todas as Matérias";
+}
+
+<h1>Todas as Matérias do Sistema</h1>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<p>
+    <a asp-action="CreateIndependentSubject" class="btn btn-primary">Nova Matéria</a>
+    <a asp-action="Courses" class="btn btn-info">Ver Cursos</a>
+    <a asp-action="Index" class="btn btn-secondary">Voltar para Estudantes</a>
+</p>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning">
+        Nenhuma matéria cadastrada no sistema.
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome da Matéria</th>
+                <th>Curso</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var subject in Model)
+            {
+                <tr>
+                    <td>@subject.ID</td>
+                    <td>@subject.Name</td>
+                    <td>
+                        @if (subject.Course != null)
+                        {
+                            <span>@subject.Course.Name (ID: @subject.Course.ID)</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger">Curso não encontrado</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="EditIndependentSubject" asp-route-id="@subject.ID" class="btn btn-warning btn-sm">Editar</a>
+                        <form asp-action="DeleteIndependentSubject" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@subject.ID" />
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Tem certeza que deseja excluir esta matéria?')">
+                                Excluir
+                            </button>
+                        </form>
+                        <a asp-action="Subjects" asp-route-courseId="@subject.CourseID" class="btn btn-info btn-sm">Ver no Curso</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
