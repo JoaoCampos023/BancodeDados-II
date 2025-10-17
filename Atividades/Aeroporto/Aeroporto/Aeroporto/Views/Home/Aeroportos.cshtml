@@ -1,5 +1,5 @@
 ﻿<!-- Views/Home/Aeroportos.cshtml -->
-@model IEnumerable<Aeroporto>
+@model IEnumerable<SistemaAereo.Models.Aeroporto>
 
 @{
     ViewData["Title"] = "Aeroportos";
@@ -50,3 +50,11 @@
         </tbody>
     </table>
 </div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info mt-3">
+        <i class="fas fa-info-circle"></i> Nenhum aeroporto cadastrado.
+        <a asp-action="CriarAeroporto" class="alert-link">Clique aqui para cadastrar o primeiro aeroporto.</a>
+    </div>
+}

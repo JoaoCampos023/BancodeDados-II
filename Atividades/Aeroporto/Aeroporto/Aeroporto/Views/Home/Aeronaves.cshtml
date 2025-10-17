@@ -1,5 +1,5 @@
 ﻿<!-- Views/Home/Aeronaves.cshtml -->
-@model IEnumerable<Aeronave>
+@model IEnumerable<SistemaAereo.Models.Aeronave>
 
 @{
     ViewData["Title"] = "Aeronaves";
@@ -30,7 +30,7 @@
                 <tr>
                     <td>@aeronave.TipoAeronave</td>
                     <td>@aeronave.NumeroPoltronas</td>
-                    <td>@aeronave.Voos.Count</td>
+                    <td>@(aeronave.Voos?.Count ?? 0)</td>
                     <td>
                         <a asp-action="EditarAeronave" asp-route-id="@aeronave.AeronaveId" class="btn btn-warning btn-sm">
                             <i class="fas fa-edit"></i>
@@ -48,3 +48,11 @@
         </tbody>
     </table>
 </div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info mt-3">
+        <i class="fas fa-info-circle"></i> Nenhuma aeronave cadastrada.
+        <a asp-action="CriarAeronave" class="alert-link">Clique aqui para cadastrar a primeira aeronave.</a>
+    </div>
+}

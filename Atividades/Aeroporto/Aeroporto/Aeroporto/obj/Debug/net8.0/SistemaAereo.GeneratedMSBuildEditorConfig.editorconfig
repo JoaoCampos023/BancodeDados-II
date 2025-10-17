@@ -40,12 +40,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDbGllbnRlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/CriarAeronave.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmlhckFlcm9uYXZlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/CriarAeroporto.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmlhckFlcm9wb3J0by5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/CriarCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmlhckNsaWVudGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/CriarVoos.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmlhclZvb3MuY3NodG1s
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/CriarVoo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmlhclZvby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/EditarAeronave.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJBZXJvbmF2ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/EditarAeroporto.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJBZXJvcG9ydG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/Index.cshtml]

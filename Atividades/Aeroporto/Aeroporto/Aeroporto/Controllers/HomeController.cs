@@ -1,10 +1,11 @@
 // Controllers/HomeController.cs
 using System.Diagnostics;
-using SistemaAereo.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SistemaAereo.Data;
 using SistemaAereo.Models;
+using SistemaAereo.Repositories;
 
 namespace SistemaAereo.Controllers
 {
@@ -539,9 +540,25 @@ namespace SistemaAereo.Controllers
         {
             try
             {
-                ViewBag.Aeroportos = await _aeroportoRepository.GetAllAsync();
-                ViewBag.Aeronaves = await _aeronaveRepository.GetAllAsync();
-                return View();
+                ViewBag.Aeroportos = await _context.Aeroportos
+                    .OrderBy(a => a.Nome)
+                    .Select(a => new SelectListItem
+                    {
+                        Value = a.AeroportoId.ToString(),
+                        Text = $"{a.Nome} ({a.CodigoIATA})"
+                    })
+                    .ToListAsync();
+
+                ViewBag.Aeronaves = await _context.Aeronaves
+                    .OrderBy(a => a.TipoAeronave)
+                    .Select(a => new SelectListItem
+                    {
+                        Value = a.AeronaveId.ToString(),
+                        Text = $"{a.TipoAeronave} - {a.NumeroPoltronas} poltronas"
+                    })
+                    .ToListAsync();
+
+                return View(); // Isso procura por "CriarVoo.cshtml"
             }
             catch (Exception ex)
             {
