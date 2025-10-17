@@ -1,0 +1,93 @@
+﻿<!-- Views/Home/MalaDireta.cshtml -->
+@model IEnumerable<ClientePreferencial>
+
+@{
+    ViewData["Title"] = "Mala Direta";
+    var totalClientes = ViewBag.TotalClientes;
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-envelope"></i> Mala Direta</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Lista de Clientes para Mala Direta</h5>
+                <p class="text-muted mb-0">Total de @totalClientes clientes ativos</p>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <button class="btn btn-primary" onclick="copiarEmails()">
+                        <i class="fas fa-copy"></i> Copiar Emails
+                    </button>
+                    <button class="btn btn-success" onclick="exportarCSV()">
+                        <i class="fas fa-download"></i> Exportar CSV
+                    </button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped" id="tabelaClientes">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Telefone</th>
+                                <th>Cidade</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cliente in Model)
+                            {
+                                <tr>
+                                    <td>@cliente.Nome</td>
+                                    <td>@cliente.Email</td>
+                                    <td>@cliente.Telefone</td>
+                                    <td>@cliente.Cidade</td>
+                                    <td>@cliente.Estado</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function copiarEmails() {
+            const emails = Array.from(document.querySelectorAll('#tabelaClientes tbody tr'))
+                .map(tr => tr.cells[1].textContent.trim())
+                .filter(email => email)
+                .join('; ');
+
+            navigator.clipboard.writeText(emails).then(() => {
+                alert('Emails copiados para a área de transferência!');
+            });
+        }
+
+        function exportarCSV() {
+            const rows = Array.from(document.querySelectorAll('#tabelaClientes tbody tr'));
+            const csvContent = [
+                ['Nome', 'Email', 'Telefone', 'Cidade', 'Estado'].join(','),
+                ...rows.map(row =>
+                    Array.from(row.cells).map(cell =>
+                        `"${cell.textContent.trim()}"`
+                    ).join(',')
+                )
+            ].join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'clientes_mala_direta.csv';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+}

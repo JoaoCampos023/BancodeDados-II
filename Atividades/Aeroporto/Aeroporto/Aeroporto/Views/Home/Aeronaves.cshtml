@@ -1,0 +1,50 @@
+﻿<!-- Views/Home/Aeronaves.cshtml -->
+@model IEnumerable<Aeronave>
+
+@{
+    ViewData["Title"] = "Aeronaves";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-plane"></i> Aeronaves</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a asp-action="CriarAeronave" class="btn btn-success">
+            <i class="fas fa-plus"></i> Nova Aeronave
+        </a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Tipo</th>
+                <th>Poltronas</th>
+                <th>Voos</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var aeronave in Model)
+            {
+                <tr>
+                    <td>@aeronave.TipoAeronave</td>
+                    <td>@aeronave.NumeroPoltronas</td>
+                    <td>@aeronave.Voos.Count</td>
+                    <td>
+                        <a asp-action="EditarAeronave" asp-route-id="@aeronave.AeronaveId" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <form asp-action="ExcluirAeronave" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@aeronave.AeronaveId" />
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Tem certeza que deseja excluir esta aeronave?')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,90 @@
+﻿<!-- Views/Home/CriarVoo.cshtml -->
+@model Voo
+
+@{
+    ViewData["Title"] = "Novo Voo";
+    var aeroportos = ViewBag.Aeroportos as List<Aeroporto>;
+    var aeronaves = ViewBag.Aeronaves as List<Aeronave>;
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-plus"></i> Novo Voo</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="CriarVoo">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="NumeroVoo" class="control-label"></label>
+                        <input asp-for="NumeroVoo" class="form-control" />
+                        <span asp-validation-for="NumeroVoo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="AeronaveId" class="control-label"></label>
+                        <select asp-for="AeronaveId" class="form-control" asp-items="@(new SelectList(aeronaves, "AeronaveId", "TipoAeronave"))">
+                            <option value="">Selecione uma aeronave</option>
+                        </select>
+                        <span asp-validation-for="AeronaveId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="AeroportoOrigemId" class="control-label"></label>
+                        <select asp-for="AeroportoOrigemId" class="form-control" asp-items="@(new SelectList(aeroportos, "AeroportoId", "Nome"))">
+                            <option value="">Selecione o aeroporto de origem</option>
+                        </select>
+                        <span asp-validation-for="AeroportoOrigemId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="AeroportoDestinoId" class="control-label"></label>
+                        <select asp-for="AeroportoDestinoId" class="form-control" asp-items="@(new SelectList(aeroportos, "AeroportoId", "Nome"))">
+                            <option value="">Selecione o aeroporto de destino</option>
+                        </select>
+                        <span asp-validation-for="AeroportoDestinoId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="HorarioSaida" class="control-label"></label>
+                        <input asp-for="HorarioSaida" type="datetime-local" class="form-control" />
+                        <span asp-validation-for="HorarioSaida" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="HorarioChegadaPrevisto" class="control-label"></label>
+                        <input asp-for="HorarioChegadaPrevisto" type="datetime-local" class="form-control" />
+                        <span asp-validation-for="HorarioChegadaPrevisto" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save"></i> Cadastrar Voo
+                </button>
+                <a asp-action="Voos" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
