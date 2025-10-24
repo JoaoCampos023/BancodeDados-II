@@ -1,0 +1,45 @@
+﻿@using Floriculture.Models
+@model Plant
+
+@{
+    ViewData["Title"] = "Delete Plant";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-3">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">
+                <i class="fa-solid fa-trash"></i> Delete Plant
+            </h4>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="DeleteConfirmed" method="post">
+                <input type="hidden" name="id" value="@Model.Id" />
+
+                <div class="mb-4">
+                    <h5 class="text-danger fw-bold mb-3">
+                        Are you sure you want to delete this plant?
+                    </h5>
+
+                    <div class="border rounded p-3 bg-light">
+                        <p><strong>Id:</strong> @Model.Id</p>
+                        <p><strong>Name:</strong> @Model.PlantName</p>
+                        <p><strong>Temperature:</strong> @(Model.SensorValue?.ToString("F1") ?? "N/A") °C</p>
+                        <p><strong>Last Update:</strong> @Model.SensorEvent.ToString("HH:mm - dd/MM/yyyy")</p>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left"></i> Cancel
+                    </a>
+
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa-solid fa-trash"></i> Confirm Delete
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

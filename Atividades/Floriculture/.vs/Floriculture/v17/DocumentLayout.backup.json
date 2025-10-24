@@ -1,0 +1,109 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Floriculture\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6D882CF2-5722-4787-85CC-5A37B9F0BEB4}|Floriculture\\Floriculture.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\floriculture\\floriculture\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6D882CF2-5722-4787-85CC-5A37B9F0BEB4}|Floriculture\\Floriculture.csproj|solutionrelative:floriculture\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D882CF2-5722-4787-85CC-5A37B9F0BEB4}|Floriculture\\Floriculture.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\floriculture\\floriculture\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6D882CF2-5722-4787-85CC-5A37B9F0BEB4}|Floriculture\\Floriculture.csproj|solutionrelative:floriculture\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D882CF2-5722-4787-85CC-5A37B9F0BEB4}|Floriculture\\Floriculture.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\floriculture\\floriculture\\views\\plant\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6D882CF2-5722-4787-85CC-5A37B9F0BEB4}|Floriculture\\Floriculture.csproj|solutionrelative:floriculture\\views\\plant\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D882CF2-5722-4787-85CC-5A37B9F0BEB4}|Floriculture\\Floriculture.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\floriculture\\floriculture\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D882CF2-5722-4787-85CC-5A37B9F0BEB4}|Floriculture\\Floriculture.csproj|solutionrelative:floriculture\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D882CF2-5722-4787-85CC-5A37B9F0BEB4}|Floriculture\\Floriculture.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\floriculture\\floriculture\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6D882CF2-5722-4787-85CC-5A37B9F0BEB4}|Floriculture\\Floriculture.csproj|solutionrelative:floriculture\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Floriculture\\Floriculture\\Views\\Plant\\Index.cshtml",
+              "RelativeDocumentMoniker": "Floriculture\\Views\\Plant\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Floriculture\\Floriculture\\Views\\Plant\\Index.cshtml",
+              "RelativeToolTip": "Floriculture\\Views\\Plant\\Index.cshtml",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-24T23:06:13.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Floriculture\\Floriculture\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "Floriculture\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Floriculture\\Floriculture\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "Floriculture\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-24T23:06:38.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Floriculture\\Floriculture\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Floriculture\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Floriculture\\Floriculture\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Floriculture\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-24T23:06:06.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Floriculture\\Floriculture\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Floriculture\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Floriculture\\Floriculture\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Floriculture\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-24T23:05:35.366Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Floriculture\\Floriculture\\Program.cs",
+              "RelativeDocumentMoniker": "Floriculture\\Program.cs",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Floriculture\\Floriculture\\Program.cs",
+              "RelativeToolTip": "Floriculture\\Program.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T23:04:14.305Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
