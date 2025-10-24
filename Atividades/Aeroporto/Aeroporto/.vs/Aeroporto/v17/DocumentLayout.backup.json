@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aeroporto\\aeroporto\\aeroporto\\views\\home\\criarvoo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|solutionrelative:aeroporto\\views\\home\\criarvoo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aeroporto\\aeroporto\\aeroporto\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|solutionrelative:aeroporto\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aeroporto\\aeroporto\\aeroporto\\views\\home\\editaraeroporto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|solutionrelative:aeroporto\\views\\home\\editaraeroporto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aeroporto\\aeroporto\\aeroporto\\views\\home\\criaraeroporto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|solutionrelative:aeroporto\\views\\home\\criaraeroporto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aeroporto\\aeroporto\\aeroporto\\views\\home\\criaraeronave.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|solutionrelative:aeroporto\\views\\home\\criaraeronave.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aeroporto\\aeroporto\\aeroporto\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|solutionrelative:aeroporto\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,54 +26,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CriarVoo.cshtml",
-              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Home\\CriarVoo.cshtml",
-              "RelativeDocumentMoniker": "Aeroporto\\Views\\Home\\CriarVoo.cshtml",
-              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Home\\CriarVoo.cshtml",
-              "RelativeToolTip": "Aeroporto\\Views\\Home\\CriarVoo.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-17T23:56:41.687Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "EditarAeroporto.cshtml",
-              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Home\\EditarAeroporto.cshtml",
-              "RelativeDocumentMoniker": "Aeroporto\\Views\\Home\\EditarAeroporto.cshtml",
-              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Home\\EditarAeroporto.cshtml",
-              "RelativeToolTip": "Aeroporto\\Views\\Home\\EditarAeroporto.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Aeroporto\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Aeroporto\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAQwHoAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-17T23:49:41.741Z",
+              "WhenOpened": "2025-10-24T22:33:49.181Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CriarAeroporto.cshtml",
-              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Home\\CriarAeroporto.cshtml",
-              "RelativeDocumentMoniker": "Aeroporto\\Views\\Home\\CriarAeroporto.cshtml",
-              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Home\\CriarAeroporto.cshtml",
-              "RelativeToolTip": "Aeroporto\\Views\\Home\\CriarAeroporto.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Aeroporto\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Aeroporto\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAGsBAAAAAAAAAAAQwHwBAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-17T23:48:30.767Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CriarAeronave.cshtml",
-              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Home\\CriarAeronave.cshtml",
-              "RelativeDocumentMoniker": "Aeroporto\\Views\\Home\\CriarAeronave.cshtml",
-              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Home\\CriarAeronave.cshtml",
-              "RelativeToolTip": "Aeroporto\\Views\\Home\\CriarAeronave.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-17T23:47:59.847Z",
+              "WhenOpened": "2025-10-24T22:33:39.962Z",
               "EditorCaption": ""
             }
           ]
