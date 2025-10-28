@@ -28,56 +28,52 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/Aeronaves.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZXJvbmF2ZXMuY3NodG1s
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Aeronaves/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWVyb25hdmVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/Aeroportos.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZXJvcG9ydG9zLmNzaHRtbA==
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Aeronaves/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWVyb25hdmVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/Clientes.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDbGllbnRlcy5jc2h0bWw=
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Aeronaves/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWVyb25hdmVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/CriarAeronave.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmlhckFlcm9uYXZlLmNzaHRtbA==
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Aeroportos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWVyb3BvcnRvc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/CriarAeroporto.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmlhckFlcm9wb3J0by5jc2h0bWw=
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Aeroportos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWVyb3BvcnRvc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/CriarCliente.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmlhckNsaWVudGUuY3NodG1s
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Aeroportos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWVyb3BvcnRvc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/CriarVoo.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmlhclZvby5jc2h0bWw=
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Clientes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/EditarAeronave.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJBZXJvbmF2ZS5jc2h0bWw=
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Clientes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/EditarAeroporto.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0YXJBZXJvcG9ydG8uY3NodG1s
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Clientes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Clientes/MalaDireta.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcTWFsYURpcmV0YS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/MalaDireta.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYWxhRGlyZXRhLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Home/Voos.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWb29zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Shared/Error.cshtml]
@@ -86,6 +82,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Voos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9vc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Voos/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9vc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Voos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9vc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Voos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9vc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/Voos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9vc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/jo/Documents/Aulas - Facul/Banco de Dados II/Atividades/Aeroporto/Aeroporto/Aeroporto/Views/_ViewImports.cshtml]

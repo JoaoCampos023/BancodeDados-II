@@ -1,5 +1,6 @@
 using SistemaAereo.Data;
 using SistemaAereo.Repositories;
+using SistemaAereo.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,9 @@ builder.Services.AddScoped<IAeroportoRepository, AeroportoRepository>();
 builder.Services.AddScoped<IVooRepository, VooRepository>();
 
 var app = builder.Build();
+
+// Inicializar banco de dados
+DbInitializer.Initialize(app);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

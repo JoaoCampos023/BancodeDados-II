@@ -1,6 +1,7 @@
 ﻿using SistemaAereo.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace SistemaAereo.Data
 {
     public class AeroportoContext : DbContext
@@ -10,7 +11,7 @@ namespace SistemaAereo.Data
         }
 
         public DbSet<Aeronave> Aeronaves { get; set; }
-        public DbSet<Models.Aeroporto> Aeroportos { get; set; }
+        public DbSet<Aeroporto> Aeroportos { get; set; }
         public DbSet<Voo> Voos { get; set; }
         public DbSet<Escala> Escalas { get; set; }
         public DbSet<Poltrona> Poltronas { get; set; }

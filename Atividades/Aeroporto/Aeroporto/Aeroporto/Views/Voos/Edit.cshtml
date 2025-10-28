@@ -1,24 +1,24 @@
-﻿<!-- Views/Home/CriarVoo.cshtml -->
-@model SistemaAereo.Models.Voo
+﻿@model SistemaAereo.Models.Voo
 
 @{
-    ViewData["Title"] = "Novo Voo";
+    ViewData["Title"] = "Editar Voo";
 }
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2"><i class="fas fa-plane-departure"></i> Novo Voo</h1>
+    <h1 class="h2"><i class="fas fa-edit"></i> Editar Voo</h1>
 </div>
 
 <div class="row">
     <div class="col-md-8">
-        <form asp-action="CriarVoo">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="VooId" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">
                         <label asp-for="NumeroVoo" class="control-label">Número do Voo</label>
-                        <input asp-for="NumeroVoo" class="form-control" placeholder="Ex: AA1234" />
+                        <input asp-for="NumeroVoo" class="form-control" />
                         <span asp-validation-for="NumeroVoo" class="text-danger"></span>
                     </div>
                 </div>
@@ -73,9 +73,9 @@
 
             <div class="form-group">
                 <button type="submit" class="btn btn-success">
-                    <i class="fas fa-save"></i> Cadastrar Voo
+                    <i class="fas fa-save"></i> Salvar Alterações
                 </button>
-                <a asp-action="Voos" class="btn btn-secondary">Cancelar</a>
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>

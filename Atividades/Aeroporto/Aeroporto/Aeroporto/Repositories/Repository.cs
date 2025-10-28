@@ -30,6 +30,19 @@ namespace SistemaAereo.Repositories
             return await _dbSet.Where(predicate).ToListAsync();
         }
 
+        public virtual async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _dbSet.FirstOrDefaultAsync(predicate);
+        }
+
+        public virtual async Task<int> CountAsync(Expression<Func<T, bool>> predicate = null)
+        {
+            if (predicate == null)
+                return await _dbSet.CountAsync();
+
+            return await _dbSet.CountAsync(predicate);
+        }
+
         public virtual async Task AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);

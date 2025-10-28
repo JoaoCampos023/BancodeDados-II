@@ -1,30 +1,39 @@
-﻿<!-- Views/Home/CriarCliente.cshtml -->
-@model ClientePreferencial
+﻿@model SistemaAereo.Models.ClientePreferencial
 
 @{
-    ViewData["Title"] = "Novo Cliente";
+    ViewData["Title"] = "Editar Cliente";
 }
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2"><i class="fas fa-user-plus"></i> Novo Cliente</h1>
+    <h1 class="h2"><i class="fas fa-edit"></i> Editar Cliente</h1>
 </div>
+
+@if (TempData["Erro"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-circle"></i> @TempData["Erro"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
 
 <div class="row">
     <div class="col-md-8">
-        <form asp-action="CriarCliente">
+        <form asp-action="Edit">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="ClienteId" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label asp-for="Nome" class="control-label"></label>
+                        <label asp-for="Nome" class="form-label">Nome Completo *</label>
                         <input asp-for="Nome" class="form-control" />
                         <span asp-validation-for="Nome" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label asp-for="Email" class="control-label"></label>
+                        <label asp-for="Email" class="form-label">Email *</label>
                         <input asp-for="Email" class="form-control" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
@@ -34,22 +43,22 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label asp-for="Telefone" class="control-label"></label>
+                        <label asp-for="Telefone" class="form-label">Telefone</label>
                         <input asp-for="Telefone" class="form-control" />
                         <span asp-validation-for="Telefone" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label asp-for="CPF" class="control-label"></label>
-                        <input asp-for="CPF" class="form-control" />
+                        <label asp-for="CPF" class="form-label">CPF</label>
+                        <input asp-for="CPF" class="form-control cpf-mask" />
                         <span asp-validation-for="CPF" class="text-danger"></span>
                     </div>
                 </div>
             </div>
 
             <div class="form-group mb-3">
-                <label asp-for="Endereco" class="control-label"></label>
+                <label asp-for="Endereco" class="form-label">Endereço</label>
                 <input asp-for="Endereco" class="form-control" />
                 <span asp-validation-for="Endereco" class="text-danger"></span>
             </div>
@@ -57,38 +66,45 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label asp-for="Cidade" class="control-label"></label>
+                        <label asp-for="Cidade" class="form-label">Cidade</label>
                         <input asp-for="Cidade" class="form-control" />
                         <span asp-validation-for="Cidade" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group mb-3">
-                        <label asp-for="Estado" class="control-label"></label>
-                        <input asp-for="Estado" class="form-control" />
+                        <label asp-for="Estado" class="form-label">Estado</label>
+                        <input asp-for="Estado" class="form-control" maxlength="2" style="text-transform:uppercase" />
                         <span asp-validation-for="Estado" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group mb-3">
-                        <label asp-for="CEP" class="control-label"></label>
-                        <input asp-for="CEP" class="form-control" />
+                        <label asp-for="CEP" class="form-label">CEP</label>
+                        <input asp-for="CEP" class="form-control cep-mask" />
                         <span asp-validation-for="CEP" class="text-danger"></span>
                     </div>
                 </div>
             </div>
 
             <div class="form-group mb-3">
-                <label asp-for="DataNascimento" class="control-label"></label>
+                <label asp-for="DataNascimento" class="form-label">Data de Nascimento</label>
                 <input asp-for="DataNascimento" type="date" class="form-control" />
                 <span asp-validation-for="DataNascimento" class="text-danger"></span>
             </div>
 
+            <div class="form-group mb-3">
+                <div class="form-check">
+                    <input asp-for="Ativo" class="form-check-input" />
+                    <label asp-for="Ativo" class="form-check-label">Cliente Ativo</label>
+                </div>
+            </div>
+
             <div class="form-group">
                 <button type="submit" class="btn btn-success">
-                    <i class="fas fa-save"></i> Cadastrar Cliente
+                    <i class="fas fa-save"></i> Salvar Alterações
                 </button>
-                <a asp-action="Clientes" class="btn btn-secondary">Cancelar</a>
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>
@@ -98,4 +114,11 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script>
+        $(document).ready(function() {
+            $('.cpf-mask').inputmask('999.999.999-99');
+            $('.cep-mask').inputmask('99999-999');
+        });
+    </script>
 }
