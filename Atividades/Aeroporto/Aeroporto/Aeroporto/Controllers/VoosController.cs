@@ -1,269 +1,209 @@
-﻿// Controllers/VoosController.cs
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SistemaAereo.Data;
 using SistemaAereo.Models;
-using SistemaAereo.Repositories;
 
 namespace SistemaAereo.Controllers
 {
     public class VoosController : Controller
     {
         private readonly AeroportoContext _context;
-        private readonly IVooRepository _vooRepository;
-        private readonly IAeroportoRepository _aeroportoRepository;
-        private readonly IAeronaveRepository _aeronaveRepository;
-        private readonly ILogger<VoosController> _logger;
 
-        public VoosController(
-            AeroportoContext context,
-            IVooRepository vooRepository,
-            IAeroportoRepository aeroportoRepository,
-            IAeronaveRepository aeronaveRepository,
-            ILogger<VoosController> logger)
+        public VoosController(AeroportoContext context)
         {
             _context = context;
-            _vooRepository = vooRepository;
-            _aeroportoRepository = aeroportoRepository;
-            _aeronaveRepository = aeronaveRepository;
-            _logger = logger;
         }
 
+        // GET: Voos
         public async Task<IActionResult> Index()
         {
-            try
-            {
-                var voos = await _vooRepository.GetVoosCompletosAsync();
-                return View(voos);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Erro ao carregar voos");
-                TempData["Erro"] = "Erro ao carregar lista de voos";
-                return View(new List<Voo>());
-            }
+            var voos = await _context.Voos
+                .Include(v => v.AeroportoOrigem)
+                .Include(v => v.AeroportoDestino)
+                .Include(v => v.Aeronave)
+                .OrderBy(v => v.HorarioSaida)
+                .ToListAsync();
+
+            return View(voos);
         }
 
+        // GET: Voos/Create
         public async Task<IActionResult> Create()
         {
             await CarregarViewBags();
-            return View();
+            return View(new Voo());
         }
 
+        // POST: Voos/Create - VERSÃO MAIS SIMPLES
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Voo voo)
+        public async Task<IActionResult> Create(
+            string NumeroVoo,
+            int AeroportoOrigemId,
+            int AeroportoDestinoId,
+            int AeronaveId,
+            DateTime HorarioSaida,
+            DateTime HorarioChegadaPrevisto)
         {
             try
             {
-                if (ModelState.IsValid)
+                Console.WriteLine("=== DADOS RECEBIDOS VIA PARÂMETROS ===");
+                Console.WriteLine($"NumeroVoo: {NumeroVoo}");
+                Console.WriteLine($"AeroportoOrigemId: {AeroportoOrigemId}");
+                Console.WriteLine($"AeroportoDestinoId: {AeroportoDestinoId}");
+                Console.WriteLine($"AeronaveId: {AeronaveId}");
+                Console.WriteLine($"HorarioSaida: {HorarioSaida}");
+                Console.WriteLine($"HorarioChegadaPrevisto: {HorarioChegadaPrevisto}");
+
+                // Criar objeto Voo manualmente
+                var voo = new Voo
                 {
-                    if (await _vooRepository.NumeroVooExistsAsync(voo.NumeroVoo))
-                    {
-                        ModelState.AddModelError("NumeroVoo", "Este número de voo já está cadastrado.");
-                        await CarregarViewBags();
-                        return View(voo);
-                    }
+                    NumeroVoo = NumeroVoo?.Trim().ToUpper(),
+                    AeroportoOrigemId = AeroportoOrigemId,
+                    AeroportoDestinoId = AeroportoDestinoId,
+                    AeronaveId = AeronaveId,
+                    HorarioSaida = HorarioSaida,
+                    HorarioChegadaPrevisto = HorarioChegadaPrevisto
+                };
 
-                    await _vooRepository.AddAsync(voo);
-                    await CriarPoltronasParaVoo(voo.VooId);
-
-                    TempData["Sucesso"] = "Voo cadastrado com sucesso!";
-                    return RedirectToAction(nameof(Index));
+                // Validações manuais
+                if (AeroportoOrigemId == AeroportoDestinoId)
+                {
+                    ModelState.AddModelError("AeroportoDestinoId", "O aeroporto de destino deve ser diferente do aeroporto de origem.");
                 }
 
-                await CarregarViewBags();
-                return View(voo);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Erro ao criar voo");
-                TempData["Erro"] = "Erro ao cadastrar voo";
-                await CarregarViewBags();
-                return View(voo);
-            }
-        }
-
-        public async Task<IActionResult> Details(int id)
-        {
-            try
-            {
-                var voo = await _vooRepository.GetVooCompletoAsync(id);
-                if (voo == null)
+                if (HorarioChegadaPrevisto <= HorarioSaida)
                 {
-                    TempData["Erro"] = "Voo não encontrado";
-                    return RedirectToAction(nameof(Index));
-                }
-                return View(voo);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Erro ao carregar detalhes do voo");
-                TempData["Erro"] = "Erro ao carregar detalhes do voo";
-                return RedirectToAction(nameof(Index));
-            }
-        }
-
-        public async Task<IActionResult> Edit(int id)
-        {
-            try
-            {
-                var voo = await _vooRepository.GetByIdAsync(id);
-                if (voo == null)
-                {
-                    TempData["Erro"] = "Voo não encontrado";
-                    return RedirectToAction(nameof(Index));
+                    ModelState.AddModelError("HorarioChegadaPrevisto", "O horário de chegada deve ser posterior ao horário de saída.");
                 }
 
-                await CarregarViewBags();
-                return View(voo);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Erro ao carregar voo para edição");
-                TempData["Erro"] = "Erro ao carregar voo";
-                return RedirectToAction(nameof(Index));
-            }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Voo voo)
-        {
-            try
-            {
-                if (id != voo.VooId)
+                if (await _context.Voos.AnyAsync(v => v.NumeroVoo == NumeroVoo))
                 {
-                    TempData["Erro"] = "ID do voo inválido";
-                    return RedirectToAction(nameof(Index));
+                    ModelState.AddModelError("NumeroVoo", "Este número de voo já está cadastrado.");
                 }
 
                 if (ModelState.IsValid)
                 {
-                    if (await _vooRepository.NumeroVooExistsAsync(voo.NumeroVoo, id))
-                    {
-                        ModelState.AddModelError("NumeroVoo", "Este número de voo já está cadastrado.");
-                        await CarregarViewBags();
-                        return View(voo);
-                    }
+                    _context.Voos.Add(voo);
+                    await _context.SaveChangesAsync();
 
-                    await _vooRepository.UpdateAsync(voo);
-                    TempData["Sucesso"] = "Voo atualizado com sucesso!";
+                    TempData["Sucesso"] = $"Voo {voo.NumeroVoo} cadastrado com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
 
                 await CarregarViewBags();
                 return View(voo);
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!await _vooRepository.ExistsAsync(v => v.VooId == id))
-                {
-                    TempData["Erro"] = "Voo não encontrado";
-                    return RedirectToAction(nameof(Index));
-                }
-                throw;
-            }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao atualizar voo");
-                TempData["Erro"] = "Erro ao atualizar voo";
+                Console.WriteLine($"ERRO: {ex.Message}");
+                TempData["Erro"] = $"Erro: {ex.Message}";
                 await CarregarViewBags();
+
+                var voo = new Voo
+                {
+                    NumeroVoo = NumeroVoo,
+                    AeroportoOrigemId = AeroportoOrigemId,
+                    AeroportoDestinoId = AeroportoDestinoId,
+                    AeronaveId = AeronaveId,
+                    HorarioSaida = HorarioSaida,
+                    HorarioChegadaPrevisto = HorarioChegadaPrevisto
+                };
+
                 return View(voo);
             }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
-        {
-            try
-            {
-                var voo = await _vooRepository.GetVooCompletoAsync(id);
-                if (voo != null)
-                {
-                    if (voo.Escalas.Any())
-                        _context.Escalas.RemoveRange(voo.Escalas);
-
-                    if (voo.Poltronas.Any())
-                        _context.Poltronas.RemoveRange(voo.Poltronas);
-
-                    await _vooRepository.DeleteAsync(voo);
-                    TempData["Sucesso"] = "Voo excluído com sucesso!";
-                }
-                else
-                {
-                    TempData["Erro"] = "Voo não encontrado";
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Erro ao excluir voo");
-                TempData["Erro"] = "Erro ao excluir voo";
-            }
-
-            return RedirectToAction(nameof(Index));
         }
 
         private async Task CarregarViewBags()
         {
-            try
-            {
-                ViewBag.Aeroportos = await _context.Aeroportos
-                    .OrderBy(a => a.Nome)
-                    .Select(a => new SelectListItem
-                    {
-                        Value = a.AeroportoId.ToString(),
-                        Text = $"{a.Nome} ({a.CodigoIATA})"
-                    })
-                    .ToListAsync();
+            var aeroportos = await _context.Aeroportos
+                .OrderBy(a => a.Nome)
+                .ToListAsync();
 
-                ViewBag.Aeronaves = await _context.Aeronaves
-                    .OrderBy(a => a.TipoAeronave)
-                    .Select(a => new SelectListItem
-                    {
-                        Value = a.AeronaveId.ToString(),
-                        Text = $"{a.TipoAeronave} - {a.NumeroPoltronas} poltronas"
-                    })
-                    .ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Erro ao carregar ViewBags para Voo");
-                ViewBag.Aeroportos = new List<SelectListItem>();
-                ViewBag.Aeronaves = new List<SelectListItem>();
-            }
+            ViewBag.Aeroportos = aeroportos
+                .Select(a => new SelectListItem
+                {
+                    Value = a.AeroportoId.ToString(),
+                    Text = $"{a.Nome} ({a.CodigoIATA}) - {a.Cidade}"
+                })
+                .ToList();
+
+            var aeronaves = await _context.Aeronaves
+                .OrderBy(a => a.TipoAeronave)
+                .ToListAsync();
+
+            ViewBag.Aeronaves = aeronaves
+                .Select(a => new SelectListItem
+                {
+                    Value = a.AeronaveId.ToString(),
+                    Text = $"{a.TipoAeronave} - {a.NumeroPoltronas} poltronas"
+                })
+                .ToList();
         }
 
-        private async Task CriarPoltronasParaVoo(int vooId)
+        // Ações básicas restantes
+        public async Task<IActionResult> Details(int id)
         {
-            var voo = await _vooRepository.GetVooCompletoAsync(vooId);
+            var voo = await _context.Voos
+                .Include(v => v.AeroportoOrigem)
+                .Include(v => v.AeroportoDestino)
+                .Include(v => v.Aeronave)
+                .FirstOrDefaultAsync(v => v.VooId == id);
 
-            if (voo?.Aeronave != null)
+            if (voo == null) return RedirectToAction(nameof(Index));
+
+            return View(voo);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var voo = await _context.Voos.FindAsync(id);
+            if (voo == null) return RedirectToAction(nameof(Index));
+
+            await CarregarViewBags();
+            return View(voo);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, Voo voo)
+        {
+            if (id != voo.VooId) return RedirectToAction(nameof(Index));
+
+            if (ModelState.IsValid)
             {
-                var poltronas = new List<Poltrona>();
-                var numeroPoltronas = voo.Aeronave.NumeroPoltronas;
+                _context.Update(voo);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
 
-                for (int i = 1; i <= numeroPoltronas; i++)
-                {
-                    var localizacao = (i % 2 == 0) ? "Corredor" : "Janela";
-                    var tipo = i <= (numeroPoltronas * 0.05) ? "Primeira" :
-                               i <= (numeroPoltronas * 0.2) ? "Executiva" : "Economica";
+            await CarregarViewBags();
+            return View(voo);
+        }
 
-                    poltronas.Add(new Poltrona
-                    {
-                        VooId = vooId,
-                        NumeroPoltrona = i.ToString("D3"),
-                        Disponivel = true,
-                        Localizacao = localizacao,
-                        Tipo = tipo
-                    });
-                }
+        public async Task<IActionResult> Delete(int id)
+        {
+            var voo = await _context.Voos
+                .Include(v => v.AeroportoOrigem)
+                .Include(v => v.AeroportoDestino)
+                .Include(v => v.Aeronave)
+                .FirstOrDefaultAsync(v => v.VooId == id);
 
-                _context.Poltronas.AddRange(poltronas);
+            if (voo == null) return RedirectToAction(nameof(Index));
+
+            return View(voo);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var voo = await _context.Voos.FindAsync(id);
+            if (voo != null)
+            {
+                _context.Voos.Remove(voo);
                 await _context.SaveChangesAsync();
             }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

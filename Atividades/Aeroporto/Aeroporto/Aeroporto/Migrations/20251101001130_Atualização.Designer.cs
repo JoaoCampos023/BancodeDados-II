@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaAereo.Data;
 
@@ -11,9 +12,11 @@ using SistemaAereo.Data;
 namespace SistemaAereo.Migrations
 {
     [DbContext(typeof(AeroportoContext))]
-    partial class AeroportoContextModelSnapshot : ModelSnapshot
+    [Migration("20251101001130_Atualização")]
+    partial class Atualização
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

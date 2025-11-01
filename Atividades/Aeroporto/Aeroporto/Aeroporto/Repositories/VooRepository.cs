@@ -7,7 +7,12 @@ namespace SistemaAereo.Repositories
 {
     public class VooRepository : Repository<Voo>, IVooRepository
     {
-        public VooRepository(AeroportoContext context) : base(context) { }
+        private readonly AeroportoContext _context;
+
+        public VooRepository(AeroportoContext context) : base(context)
+        {
+            _context = context;
+        }
 
         // CONSULTAS COMPLEXAS COM INCLUDE
         public async Task<IEnumerable<Voo>> GetVoosCompletosAsync()
@@ -133,7 +138,10 @@ namespace SistemaAereo.Repositories
                 query = query.Where(v => v.HorarioSaida <= dataFim.Value);
 
             if (apenasComPoltronasDisponiveis)
-                query = query.Where(v => v.Poltronas.Any(p => p.Disponivel));
+            {
+                query = query.Include(v => v.Poltronas)
+                            .Where(v => v.Poltronas.Any(p => p.Disponivel));
+            }
 
             return await query
                 .OrderBy(v => v.HorarioSaida)
@@ -270,7 +278,7 @@ namespace SistemaAereo.Repositories
             // Lógica de atualização em lote
             foreach (var voo in voosAntigos)
             {
-                // Operações em lote
+                // Operações em lote podem ser implementadas aqui
             }
 
             await _context.SaveChangesAsync();
@@ -291,7 +299,7 @@ namespace SistemaAereo.Repositories
 
                 if (ocupacao < percentualMinimo)
                 {
-                    // Lógica para cancelar voo
+                    // Lógica para cancelar voo pode ser implementada aqui
                 }
             }
 

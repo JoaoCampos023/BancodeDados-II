@@ -4,204 +4,150 @@
     ViewData["Title"] = "Agendar Novo Voo";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <div>
-        <h1 class="h3 mb-2 text-dark">
-            <i class="fas fa-plane-departure text-primary me-2"></i>Agendar Novo Voo
-        </h1>
-        <p class="text-muted mb-0">Preencha os dados para agendar um novo voo</p>
-    </div>
-    <div>
-        <a asp-action="Index" class="btn btn-outline-secondary btn-modern">
-            <i class="fas fa-arrow-left me-2"></i>Voltar
-        </a>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-8">
-        <div class="card-modern">
-            <div class="card-header-modern">
-                <h5 class="mb-0 text-dark">
-                    <i class="fas fa-info-circle me-2"></i>Informações do Voo
-                </h5>
-            </div>
-            <div class="card-body-modern">
-                <form asp-action="Create" class="needs-validation" novalidate>
-                    <div asp-validation-summary="ModelOnly" class="alert-modern alert-danger"></div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="NumeroVoo" class="form-label fw-semibold">
-                                <i class="fas fa-hashtag me-2 text-primary"></i>Número do Voo
-                            </label>
-                            <input asp-for="NumeroVoo" class="form-control form-control-modern"
-                                   placeholder="Ex: AA1234" required>
-                            <span asp-validation-for="NumeroVoo" class="text-danger small"></span>
-                            <div class="form-text">Código único de identificação do voo</div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="AeronaveId" class="form-label fw-semibold">
-                                <i class="fas fa-plane me-2 text-primary"></i>Aeronave
-                            </label>
-                            <select asp-for="AeronaveId" class="form-select form-control-modern" required>
-                                <option value="">Selecione uma aeronave</option>
-                                @foreach (var item in ViewBag.Aeronaves as List<SelectListItem>)
-                                {
-                                    <option value="@item.Value">@item.Text</option>
-                                }
-                            </select>
-                            <span asp-validation-for="AeronaveId" class="text-danger small"></span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="AeroportoOrigemId" class="form-label fw-semibold">
-                                <i class="fas fa-location-arrow me-2 text-primary"></i>Aeroporto de Origem
-                            </label>
-                            <select asp-for="AeroportoOrigemId" class="form-select form-control-modern" required>
-                                <option value="">Selecione o aeroporto de origem</option>
-                                @foreach (var item in ViewBag.Aeroportos as List<SelectListItem>)
-                                {
-                                    <option value="@item.Value">@item.Text</option>
-                                }
-                            </select>
-                            <span asp-validation-for="AeroportoOrigemId" class="text-danger small"></span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="AeroportoDestinoId" class="form-label fw-semibold">
-                                <i class="fas fa-map-marker-alt me-2 text-primary"></i>Aeroporto de Destino
-                            </label>
-                            <select asp-for="AeroportoDestinoId" class="form-select form-control-modern" required>
-                                <option value="">Selecione o aeroporto de destino</option>
-                                @foreach (var item in ViewBag.Aeroportos as List<SelectListItem>)
-                                {
-                                    <option value="@item.Value">@item.Text</option>
-                                }
-                            </select>
-                            <span asp-validation-for="AeroportoDestinoId" class="text-danger small"></span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="HorarioSaida" class="form-label fw-semibold">
-                                <i class="fas fa-clock me-2 text-primary"></i>Horário de Saída
-                            </label>
-                            <input asp-for="HorarioSaida" type="datetime-local"
-                                   class="form-control form-control-modern" required>
-                            <span asp-validation-for="HorarioSaida" class="text-danger small"></span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="HorarioChegadaPrevisto" class="form-label fw-semibold">
-                                <i class="fas fa-flag-checkered me-2 text-primary"></i>Horário Previsto de Chegada
-                            </label>
-                            <input asp-for="HorarioChegadaPrevisto" type="datetime-local"
-                                   class="form-control form-control-modern" required>
-                            <span asp-validation-for="HorarioChegadaPrevisto" class="text-danger small"></span>
-                        </div>
-                    </div>
-
-                    <div class="d-flex gap-2 pt-3 border-top">
-                        <button type="submit" class="btn btn-primary-modern">
-                            <i class="fas fa-save me-2"></i>Agendar Voo
-                        </button>
-                        <a asp-action="Index" class="btn btn-outline-secondary btn-modern">
-                            <i class="fas fa-times me-2"></i>Cancelar
-                        </a>
-                    </div>
-                </form>
-            </div>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-2 text-dark">
+                <i class="fas fa-plane-departure text-primary me-2"></i>Agendar Novo Voo
+            </h1>
+        </div>
+        <div>
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Voltar
+            </a>
         </div>
     </div>
 
-    <div class="col-lg-4">
-        <!-- Card de Ajuda -->
-        <div class="card-modern">
-            <div class="card-header-modern">
-                <h5 class="mb-0 text-dark">
-                    <i class="fas fa-question-circle me-2"></i>Informações Importantes
-                </h5>
-            </div>
-            <div class="card-body-modern">
-                <div class="alert-modern alert-info">
-                    <h6 class="alert-heading">
-                        <i class="fas fa-info-circle me-2"></i>Dicas para Agendamento
-                    </h6>
-                    <ul class="mb-0 ps-3">
-                        <li>Verifique a disponibilidade da aeronave</li>
-                        <li>Confirme os horários dos aeroportos</li>
-                        <li>O número do voo deve ser único</li>
-                        <li>Horário de chegada deve ser posterior à saída</li>
-                    </ul>
-                </div>
-            </div>
+    @if (TempData["Sucesso"] != null)
+    {
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle me-2"></i>@TempData["Sucesso"]
         </div>
-
-        <!-- Card de Status -->
-        <div class="card-modern mt-4">
-            <div class="card-header-modern">
-                <h5 class="mb-0 text-dark">
-                    <i class="fas fa-rocket me-2"></i>Ações Rápidas
-                </h5>
-            </div>
-            <div class="card-body-modern">
-                <div class="d-grid gap-2">
-                    <a asp-controller="Aeronaves" asp-action="Create"
-                       class="btn btn-outline-primary btn-modern text-start">
-                        <i class="fas fa-plus me-2"></i>Nova Aeronave
-                    </a>
-                    <a asp-controller="Aeroportos" asp-action="Create"
-                       class="btn btn-outline-primary btn-modern text-start">
-                        <i class="fas fa-plus me-2"></i>Novo Aeroporto
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
-    <script>
-        // Validação customizada
-        document.addEventListener('DOMContentLoaded', function() {
-            const forms = document.querySelectorAll('.needs-validation');
+    @if (TempData["Erro"] != null)
+    {
+        <div class="alert alert-danger">
+            <i class="fas fa-exclamation-circle me-2"></i>@TempData["Erro"]
+        </div>
+    }
 
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Informações do Voo</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                @Html.AntiForgeryToken()
 
-                    form.classList.add('was-validated');
-                }, false);
-            });
-
-            // Validação de datas
-            const saidaInput = document.getElementById('HorarioSaida');
-            const chegadaInput = document.getElementById('HorarioChegadaPrevisto');
-
-            saidaInput.addEventListener('change', function() {
-                if (chegadaInput.value && new Date(chegadaInput.value) <= new Date(this.value)) {
-                    chegadaInput.setCustomValidity('A chegada deve ser posterior à saída');
-                } else {
-                    chegadaInput.setCustomValidity('');
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-warning">
+                        <strong>Erros de validação:</strong>
+                        <ul class="mb-0">
+                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <li>@error.ErrorMessage</li>
+                            }
+                        </ul>
+                    </div>
                 }
-            });
 
-            chegadaInput.addEventListener('change', function() {
-                if (saidaInput.value && new Date(this.value) <= new Date(saidaInput.value)) {
-                    this.setCustomValidity('A chegada deve ser posterior à saída');
-                } else {
-                    this.setCustomValidity('');
-                }
-            });
-        });
-    </script>
-}
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="NumeroVoo" class="form-label">Número do Voo *</label>
+                        <input type="text" class="form-control" id="NumeroVoo" name="NumeroVoo"
+                               value="@Model?.NumeroVoo" required maxlength="10"
+                               placeholder="Ex: AA1234">
+                        <div class="form-text">Código único de identificação do voo</div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="AeronaveId" class="form-label">Aeronave *</label>
+                        <select class="form-select" id="AeronaveId" name="AeronaveId" required>
+                            <option value="">Selecione uma aeronave</option>
+                            @if (ViewBag.Aeronaves != null)
+                            {
+                                foreach (var item in ViewBag.Aeronaves as List<SelectListItem>)
+                                {
+                                    if (Model?.AeronaveId.ToString() == item.Value)
+                                    {
+                                        <option value="@item.Value" selected>@item.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="AeroportoOrigemId" class="form-label">Aeroporto de Origem *</label>
+                        <select class="form-select" id="AeroportoOrigemId" name="AeroportoOrigemId" required>
+                            <option value="">Selecione o aeroporto de origem</option>
+                            @if (ViewBag.Aeroportos != null)
+                            {
+                                foreach (var item in ViewBag.Aeroportos as List<SelectListItem>)
+                                {
+                                    if (Model?.AeroportoOrigemId.ToString() == item.Value)
+                                    {
+                                        <option value="@item.Value" selected>@item.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="AeroportoDestinoId" class="form-label">Aeroporto de Destino *</label>
+                        <select class="form-select" id="AeroportoDestinoId" name="AeroportoDestinoId" required>
+                            <option value="">Selecione o aeroporto de destino</option>
+                            @if (ViewBag.Aeroportos != null)
+                            {
+                                foreach (var item in ViewBag.Aeroportos as List<SelectListItem>)
+                                {
+                                    if (Model?.AeroportoDestinoId.ToString() == item.Value)
+                                    {
+                                        <option value="@item.Value" selected>@item.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="HorarioSaida" class="form-label">Horário de Saída *</label>
+                        <input type="datetime-local" class="form-control" id="HorarioSaida" name="HorarioSaida"
+                               value="@(Model?.HorarioSaida.ToString("yyyy-MM-ddTHH:mm") ?? "")" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="HorarioChegadaPrevisto" class="form-label">Horário Previsto de Chegada *</label>
+                        <input type="datetime-local" class="form-control" id="HorarioChegadaPrevisto" name="HorarioChegadaPrevisto"
+                               value="@(Model?.HorarioChegadaPrevisto.ToString("yyyy-MM-ddTHH:mm") ?? "")" required>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-2"></i>Agendar Voo
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="fas fa-times me-2"></i>Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

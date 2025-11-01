@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaAereo.Data;
 
@@ -11,9 +12,11 @@ using SistemaAereo.Data;
 namespace SistemaAereo.Migrations
 {
     [DbContext(typeof(AeroportoContext))]
-    partial class AeroportoContextModelSnapshot : ModelSnapshot
+    [Migration("20251031235101_Update2")]
+    partial class Update2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,6 +149,42 @@ namespace SistemaAereo.Migrations
                     b.ToTable("ClientesPreferenciais");
                 });
 
+            modelBuilder.Entity("SistemaAereo.Models.Clientes", b =>
+                {
+                    b.Property<int>("ClienteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClienteId"));
+
+                    b.Property<string>("CPF")
+                        .IsRequired()
+                        .HasMaxLength(14)
+                        .HasColumnType("nvarchar(14)");
+
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("ClienteId");
+
+                    b.ToTable("Clientes");
+                });
+
             modelBuilder.Entity("SistemaAereo.Models.Escala", b =>
                 {
                     b.Property<int>("EscalaId")
@@ -215,6 +254,49 @@ namespace SistemaAereo.Migrations
                     b.HasIndex("VooId");
 
                     b.ToTable("Poltronas");
+                });
+
+            modelBuilder.Entity("SistemaAereo.Models.Reserva", b =>
+                {
+                    b.Property<int>("ReservaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservaId"));
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CodigoReserva")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("DataReserva")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PoltronaId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PrecoTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("VooId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReservaId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("PoltronaId");
+
+                    b.HasIndex("VooId");
+
+                    b.ToTable("Reservas");
                 });
 
             modelBuilder.Entity("SistemaAereo.Models.Voo", b =>
@@ -289,6 +371,33 @@ namespace SistemaAereo.Migrations
                     b.Navigation("Voo");
                 });
 
+            modelBuilder.Entity("SistemaAereo.Models.Reserva", b =>
+                {
+                    b.HasOne("SistemaAereo.Models.Clientes", "Cliente")
+                        .WithMany("Reservas")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaAereo.Models.Poltrona", "Poltrona")
+                        .WithMany("Reservas")
+                        .HasForeignKey("PoltronaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SistemaAereo.Models.Voo", "Voo")
+                        .WithMany()
+                        .HasForeignKey("VooId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Poltrona");
+
+                    b.Navigation("Voo");
+                });
+
             modelBuilder.Entity("SistemaAereo.Models.Voo", b =>
                 {
                     b.HasOne("SistemaAereo.Models.Aeronave", "Aeronave")
@@ -328,6 +437,16 @@ namespace SistemaAereo.Migrations
                     b.Navigation("VoosDestino");
 
                     b.Navigation("VoosOrigem");
+                });
+
+            modelBuilder.Entity("SistemaAereo.Models.Clientes", b =>
+                {
+                    b.Navigation("Reservas");
+                });
+
+            modelBuilder.Entity("SistemaAereo.Models.Poltrona", b =>
+                {
+                    b.Navigation("Reservas");
                 });
 
             modelBuilder.Entity("SistemaAereo.Models.Voo", b =>

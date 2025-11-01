@@ -47,44 +47,15 @@ namespace SistemaAereo.Repositories
         Task AtualizarStatusVoosAsync();
         Task CancelarVoosComBaixaOcupacaoAsync(double percentualMinimo);
 
-        // CONSULTAS PAGINADAS (PARA GRANDES VOLUMES DE DADOS)
+        // CONSULTAS PAGINADAS
         Task<(IEnumerable<Voo> Voos, int TotalCount)> GetVoosPaginadosAsync(
             int pagina = 1,
             int itensPorPagina = 10,
             string ordenacao = "data",
             bool ascendente = true);
-    }
 
-    // CLASSE DE SUPORTE PARA FILTROS COMPLEXOS
-    public class VooFiltros
-    {
-        public int? AeroportoOrigemId { get; set; }
-        public int? AeroportoDestinoId { get; set; }
-        public int? AeronaveId { get; set; }
-        public DateTime? DataInicio { get; set; }
-        public DateTime? DataFim { get; set; }
-        public bool ApenasComPoltronasDisponiveis { get; set; }
-        public string NumeroVoo { get; set; }
-        public bool ApenasFuturos { get; set; } = true;
-
-        // Paginação
-        public int Pagina { get; set; } = 1;
-        public int ItensPorPagina { get; set; } = 10;
-
-        // Ordenação
-        public string Ordenacao { get; set; } = "data";
-        public bool Ascendente { get; set; } = true;
-    }
-
-    // CLASSE DE RESPOSTA PAGINADA
-    public class ResultadoPaginado<T>
-    {
-        public IEnumerable<T> Itens { get; set; }
-        public int Pagina { get; set; }
-        public int ItensPorPagina { get; set; }
-        public int TotalItens { get; set; }
-        public int TotalPaginas => (int)Math.Ceiling((double)TotalItens / ItensPorPagina);
-        public bool TemPaginaAnterior => Pagina > 1;
-        public bool TemProximaPagina => Pagina < TotalPaginas;
+        // OVERRIDE DOS MÉTODOS BASE
+        new Task<IEnumerable<Voo>> GetAllAsync();
+        new Task<IEnumerable<Voo>> FindAsync(Expression<Func<Voo, bool>> predicate);
     }
 }
