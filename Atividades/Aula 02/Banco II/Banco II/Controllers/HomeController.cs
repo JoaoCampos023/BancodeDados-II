@@ -16,13 +16,16 @@ namespace Banco_II.Controllers
         private readonly ICourseRepository _courseRepository;
         private readonly IStudentCoursesRepository _studentCoursesRepository;
         private readonly ISubjectRepository _subjectRepository;
+        private readonly IConfiguration _config;
 
         public HomeController(
             ILogger<HomeController> logger,
             IStudentRepository studentRepository,
             ICourseRepository courseRepository,
             IStudentCoursesRepository studentCoursesRepository,
-            ISubjectRepository subjectRepository
+            ISubjectRepository subjectRepository,
+            IConfiguration config
+
         )
         {
             _logger = logger;
@@ -30,6 +33,7 @@ namespace Banco_II.Controllers
             _courseRepository = courseRepository;
             _studentCoursesRepository = studentCoursesRepository;
             _subjectRepository = subjectRepository;
+            _config = config;
         }
 
         public async Task<IActionResult> Index()
