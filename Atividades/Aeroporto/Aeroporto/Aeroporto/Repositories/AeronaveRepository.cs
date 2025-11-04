@@ -6,7 +6,15 @@ using SistemaAereo.Repositories.Interfaces;
 
 public class AeronaveRepository : Repository<Aeronave>, IAeronaveRepository
 {
+    // =============================================
+    // CONSTRUTOR
+    // =============================================
+
     public AeronaveRepository(AeroportoContext context) : base(context) { }
+
+    // =============================================
+    // IMPLEMENTAÇÃO - CONSULTAS DE AERONAVES
+    // =============================================
 
     public async Task<IEnumerable<Aeronave>> GetAeronavesComVoosAsync()
     {
@@ -18,6 +26,10 @@ public class AeronaveRepository : Repository<Aeronave>, IAeronaveRepository
             .OrderBy(a => a.TipoAeronave)
             .ToListAsync();
     }
+
+    // =============================================
+    // IMPLEMENTAÇÃO - VALIDAÇÕES DE DEPENDÊNCIA
+    // =============================================
 
     public async Task<bool> HasVoosAsync(int aeronaveId)
     {

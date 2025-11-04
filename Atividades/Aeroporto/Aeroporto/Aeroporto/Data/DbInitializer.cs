@@ -5,37 +5,103 @@ namespace SistemaAereo.Services
 {
     public static class DbInitializer
     {
+        // =============================================
+        // MÉTODOS PÚBLICOS
+        // =============================================
+
         public static void Initialize(IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<AeroportoContext>();
-                context.Database.EnsureCreated();
 
-                // Opcional: Adicionar dados iniciais para teste
-                SeedData(context);
+                GarantirBancoCriado(context);
+                InicializarDados(context);
             }
         }
 
-        private static void SeedData(AeroportoContext context)
+        // =============================================
+        // MÉTODOS PRIVADOS DE INICIALIZAÇÃO
+        // =============================================
+
+        private static void GarantirBancoCriado(AeroportoContext context)
         {
-            // Adicionar alguns dados de teste se o banco estiver vazio
-            if (!context.Aeronaves.Any())
-            {
-                context.Aeronaves.AddRange(
-                    new Models.Aeronave { TipoAeronave = "Boeing 737", NumeroPoltronas = 180 },
-                    new Models.Aeronave { TipoAeronave = "Airbus A320", NumeroPoltronas = 150 }
-                );
-            }
+            context.Database.EnsureCreated();
+        }
 
-            if (!context.Aeroportos.Any())
+        private static void InicializarDados(AeroportoContext context)
+        {
+            if (BancoVazio(context))
             {
-                context.Aeroportos.AddRange(
-                    new Models.Aeroporto { Nome = "Aeroporto Internacional do Rio de Janeiro", CodigoIATA = "GRU", Cidade = "Rio de Janeiro", Pais = "Brasil" },
-                    new Models.Aeroporto { Nome = "Aeroporto Santos Dumont", CodigoIATA = "SDU", Cidade = "Rio de Janeiro", Pais = "Brasil" }
-                );
+                AdicionarDadosIniciais(context);
             }
+        }
 
+        private static bool BancoVazio(AeroportoContext context)
+        {
+            return !context.Aeronaves.Any() && !context.Aeroportos.Any();
+        }
+
+        private static void AdicionarDadosIniciais(AeroportoContext context)
+        {
+            AdicionarAeronavesIniciais(context);
+            AdicionarAeroportosIniciais(context);
+
+            PersistirDados(context);
+        }
+
+        // =============================================
+        // MÉTODOS DE ADIÇÃO DE DADOS ESPECÍFICOS
+        // =============================================
+
+        private static void AdicionarAeronavesIniciais(AeroportoContext context)
+        {
+            var aeronaves = new[]
+            {
+                new Models.Aeronave
+                {
+                    TipoAeronave = "Boeing 737",
+                    NumeroPoltronas = 180
+                },
+                new Models.Aeronave
+                {
+                    TipoAeronave = "Airbus A320",
+                    NumeroPoltronas = 150
+                }
+            };
+
+            context.Aeronaves.AddRange(aeronaves);
+        }
+
+        private static void AdicionarAeroportosIniciais(AeroportoContext context)
+        {
+            var aeroportos = new[]
+            {
+                new Models.Aeroporto
+                {
+                    Nome = "Aeroporto Internacional do Rio de Janeiro",
+                    CodigoIATA = "GIG",
+                    Cidade = "Rio de Janeiro",
+                    Pais = "Brasil"
+                },
+                new Models.Aeroporto
+                {
+                    Nome = "Aeroporto Santos Dumont",
+                    CodigoIATA = "SDU",
+                    Cidade = "Rio de Janeiro",
+                    Pais = "Brasil"
+                }
+            };
+
+            context.Aeroportos.AddRange(aeroportos);
+        }
+
+        // =============================================
+        // MÉTODOS AUXILIARES
+        // =============================================
+
+        private static void PersistirDados(AeroportoContext context)
+        {
             context.SaveChanges();
         }
     }

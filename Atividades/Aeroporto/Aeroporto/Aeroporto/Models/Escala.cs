@@ -4,6 +4,10 @@ namespace SistemaAereo.Models
 {
     public class Escala
     {
+        // =============================================
+        // PROPRIEDADES PRINCIPAIS
+        // =============================================
+
         [Key]
         public int EscalaId { get; set; }
 
@@ -16,12 +20,19 @@ namespace SistemaAereo.Models
         [Required]
         public int Ordem { get; set; }
 
+        // =============================================
+        // PROPRIEDADES DE HORÁRIO
+        // =============================================
+
         [Required]
         public DateTime HorarioSaida { get; set; }
 
         public DateTime? HorarioChegada { get; set; }
 
-        // Relacionamentos
+        // =============================================
+        // RELACIONAMENTOS
+        // =============================================
+
         public virtual Voo Voo { get; set; }
         public virtual Aeroporto Aeroporto { get; set; }
     }

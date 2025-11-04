@@ -4,6 +4,10 @@ namespace SistemaAereo.Models
 {
     public class Aeronave
     {
+        // =============================================
+        // PROPRIEDADES PRINCIPAIS
+        // =============================================
+
         [Key]
         public int AeronaveId { get; set; }
 
@@ -14,8 +18,15 @@ namespace SistemaAereo.Models
         [Required]
         public int NumeroPoltronas { get; set; }
 
-        // Relacionamento com Voos
+        // =============================================
+        // RELACIONAMENTOS
+        // =============================================
+
         public virtual ICollection<Voo> Voos { get; set; }
+
+        // =============================================
+        // CONSTRUTOR
+        // =============================================
 
         public Aeronave()
         {

@@ -4,6 +4,10 @@ namespace SistemaAereo.Models
 {
     public class Poltrona
     {
+        // =============================================
+        // PROPRIEDADES PRINCIPAIS
+        // =============================================
+
         [Key]
         public int PoltronaId { get; set; }
 
@@ -17,6 +21,10 @@ namespace SistemaAereo.Models
         [Required]
         public bool Disponivel { get; set; } = true;
 
+        // =============================================
+        // PROPRIEDADES DE CARACTERÍSTICAS
+        // =============================================
+
         [Required]
         [StringLength(20)]
         public string Localizacao { get; set; } // "Janela", "Corredor", "Meio"
@@ -27,11 +35,16 @@ namespace SistemaAereo.Models
         [DataType(DataType.Currency)]
         public decimal Preco { get; set; }
 
-        // Relacionamento com Passagem
-        public virtual ICollection<Passagem> Passagens { get; set; }
+        // =============================================
+        // RELACIONAMENTOS
+        // =============================================
 
-        // Relacionamento com Voo
+        public virtual ICollection<Passagem> Passagens { get; set; }
         public virtual Voo Voo { get; set; }
+
+        // =============================================
+        // CONSTRUTOR
+        // =============================================
 
         public Poltrona()
         {

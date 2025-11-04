@@ -4,6 +4,10 @@ namespace SistemaAereo.Models
 {
     public class Aeroporto
     {
+        // =============================================
+        // PROPRIEDADES PRINCIPAIS
+        // =============================================
+
         [Key]
         public int AeroportoId { get; set; }
 
@@ -21,10 +25,17 @@ namespace SistemaAereo.Models
         [StringLength(100)]
         public string Pais { get; set; }
 
-        // Relacionamentos
+        // =============================================
+        // RELACIONAMENTOS
+        // =============================================
+
         public virtual ICollection<Voo> VoosOrigem { get; set; }
         public virtual ICollection<Voo> VoosDestino { get; set; }
         public virtual ICollection<Escala> Escalas { get; set; }
+
+        // =============================================
+        // CONSTRUTOR
+        // =============================================
 
         public Aeroporto()
         {

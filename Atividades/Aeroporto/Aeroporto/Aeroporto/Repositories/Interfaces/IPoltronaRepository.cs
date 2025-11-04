@@ -1,22 +1,45 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaAereo.Data;
 using SistemaAereo.Models;
+using SistemaAereo.Repositories.Interfaces;
 
 namespace SistemaAereo.Repositories
 {
     public interface IPoltronaRepository : IRepository<Poltrona>
     {
+        // =============================================
+        // CONSULTAS DE POLTRONAS
+        // =============================================
+
         Task<IEnumerable<Poltrona>> GetPoltronasPorVooAsync(int vooId);
         Task<IEnumerable<Poltrona>> GetPoltronasDisponiveisPorVooAsync(int vooId);
         Task<Poltrona> GetPoltronaComVooAsync(int id);
+
+        // =============================================
+        // VALIDAÇÕES E VERIFICAÇÕES
+        // =============================================
+
         Task<bool> NumeroPoltronaExistsInVooAsync(int vooId, string numeroPoltrona);
+
+        // =============================================
+        // ESTATÍSTICAS E CONTAGENS
+        // =============================================
+
         Task<int> GetTotalPoltronasDisponiveisPorVooAsync(int vooId);
         Task<int> GetTotalPoltronasPorVooAsync(int vooId);
     }
 
+    // =============================================
+    // IMPLEMENTAÇÃO DO REPOSITÓRIO
+    // =============================================
+
     public class PoltronaRepository : Repository<Poltrona>, IPoltronaRepository
     {
         public PoltronaRepository(AeroportoContext context) : base(context) { }
+
+        // =============================================
+        // IMPLEMENTAÇÃO - CONSULTAS DE POLTRONAS
+        // =============================================
 
         public async Task<IEnumerable<Poltrona>> GetPoltronasPorVooAsync(int vooId)
         {
@@ -45,12 +68,20 @@ namespace SistemaAereo.Repositories
                 .FirstOrDefaultAsync(p => p.PoltronaId == id);
         }
 
+        // =============================================
+        // IMPLEMENTAÇÃO - VALIDAÇÕES
+        // =============================================
+
         public async Task<bool> NumeroPoltronaExistsInVooAsync(int vooId, string numeroPoltrona)
         {
             return await _dbSet.AnyAsync(p =>
                 p.VooId == vooId &&
                 p.NumeroPoltrona == numeroPoltrona);
         }
+
+        // =============================================
+        // IMPLEMENTAÇÃO - ESTATÍSTICAS
+        // =============================================
 
         public async Task<int> GetTotalPoltronasDisponiveisPorVooAsync(int vooId)
         {

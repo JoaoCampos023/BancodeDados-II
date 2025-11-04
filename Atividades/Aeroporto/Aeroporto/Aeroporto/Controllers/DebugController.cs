@@ -14,11 +14,14 @@ namespace SistemaAereo.Controllers
             _context = context;
         }
 
+        // =============================================
+        // MÉTODOS DE VISUALIZAÇÃO DE DADOS
+        // =============================================
+
         public async Task<IActionResult> Dados()
         {
             var dados = new
             {
-                // Verificar voos
                 Voos = await _context.Voos
                     .Include(v => v.AeroportoOrigem)
                     .Include(v => v.AeroportoDestino)
@@ -37,18 +40,15 @@ namespace SistemaAereo.Controllers
                     })
                     .ToListAsync(),
 
-                // Verificar clientes
                 Clientes = await _context.ClientesPreferenciais
                     .Where(c => c.Ativo)
                     .Select(c => new { c.ClienteId, c.Nome })
                     .ToListAsync(),
 
-                // Verificar aeronaves
                 Aeronaves = await _context.Aeronaves
                     .Select(a => new { a.AeronaveId, a.TipoAeronave })
                     .ToListAsync(),
 
-                // Verificar aeroportos
                 Aeroportos = await _context.Aeroportos
                     .Select(a => new { a.AeroportoId, a.Nome, a.CodigoIATA })
                     .ToListAsync()
@@ -84,12 +84,15 @@ namespace SistemaAereo.Controllers
             return Json(dados);
         }
 
+        // =============================================
+        // MÉTODOS DE CRIAÇÃO DE DADOS TESTE
+        // =============================================
+
         [HttpPost]
         public async Task<JsonResult> CriarDadosTeste()
         {
             try
             {
-                // Verificar se já existem dados
                 var voosExistem = await _context.Voos.AnyAsync();
                 var clientesExistem = await _context.ClientesPreferenciais.AnyAsync();
 
@@ -102,7 +105,6 @@ namespace SistemaAereo.Controllers
                     });
                 }
 
-                // Criar aeronave
                 var aeronave = new Aeronave
                 {
                     TipoAeronave = "Boeing 737-800",
@@ -110,68 +112,64 @@ namespace SistemaAereo.Controllers
                 };
                 _context.Aeronaves.Add(aeronave);
 
-                // Criar aeroportos
                 var aeroportos = new[]
                 {
-            new Aeroporto { Nome = "Aeroporto Internacional de São Paulo/Guarulhos", CodigoIATA = "GRU", Cidade = "São Paulo", Pais = "Brasil" },
-            new Aeroporto { Nome = "Aeroporto Santos Dumont", CodigoIATA = "SDU", Cidade = "Rio de Janeiro", Pais = "Brasil" },
-            new Aeroporto { Nome = "Aeroporto Internacional de Brasília", CodigoIATA = "BSB", Cidade = "Brasília", Pais = "Brasil" }
-        };
+                    new Aeroporto { Nome = "Aeroporto Internacional de São Paulo/Guarulhos", CodigoIATA = "GRU", Cidade = "São Paulo", Pais = "Brasil" },
+                    new Aeroporto { Nome = "Aeroporto Santos Dumont", CodigoIATA = "SDU", Cidade = "Rio de Janeiro", Pais = "Brasil" },
+                    new Aeroporto { Nome = "Aeroporto Internacional de Brasília", CodigoIATA = "BSB", Cidade = "Brasília", Pais = "Brasil" }
+                };
                 _context.Aeroportos.AddRange(aeroportos);
 
                 await _context.SaveChangesAsync();
 
-                // Criar voos futuros
                 var voos = new[]
                 {
-            new Voo
-            {
-                NumeroVoo = "LA1234",
-                AeroportoOrigemId = aeroportos[0].AeroportoId,
-                AeroportoDestinoId = aeroportos[1].AeroportoId,
-                AeronaveId = aeronave.AeronaveId,
-                HorarioSaida = DateTime.Now.AddDays(1).AddHours(2),
-                HorarioChegadaPrevisto = DateTime.Now.AddDays(1).AddHours(4)
-            },
-            new Voo
-            {
-                NumeroVoo = "LA5678",
-                AeroportoOrigemId = aeroportos[0].AeroportoId,
-                AeroportoDestinoId = aeroportos[2].AeroportoId,
-                AeronaveId = aeronave.AeronaveId,
-                HorarioSaida = DateTime.Now.AddDays(2).AddHours(3),
-                HorarioChegadaPrevisto = DateTime.Now.AddDays(2).AddHours(5)
-            }
-        };
+                    new Voo
+                    {
+                        NumeroVoo = "LA1234",
+                        AeroportoOrigemId = aeroportos[0].AeroportoId,
+                        AeroportoDestinoId = aeroportos[1].AeroportoId,
+                        AeronaveId = aeronave.AeronaveId,
+                        HorarioSaida = DateTime.Now.AddDays(1).AddHours(2),
+                        HorarioChegadaPrevisto = DateTime.Now.AddDays(1).AddHours(4)
+                    },
+                    new Voo
+                    {
+                        NumeroVoo = "LA5678",
+                        AeroportoOrigemId = aeroportos[0].AeroportoId,
+                        AeroportoDestinoId = aeroportos[2].AeroportoId,
+                        AeronaveId = aeronave.AeronaveId,
+                        HorarioSaida = DateTime.Now.AddDays(2).AddHours(3),
+                        HorarioChegadaPrevisto = DateTime.Now.AddDays(2).AddHours(5)
+                    }
+                };
                 _context.Voos.AddRange(voos);
 
-                // Criar clientes
                 var clientes = new[]
                 {
-            new ClientePreferencial
-            {
-                Nome = "João Silva",
-                Email = "joao.silva@email.com",
-                Telefone = "(11) 99999-9999",
-                CPF = "123.456.789-00",
-                Cidade = "São Paulo",
-                Estado = "SP"
-            },
-            new ClientePreferencial
-            {
-                Nome = "Maria Santos",
-                Email = "maria.santos@email.com",
-                Telefone = "(21) 98888-8888",
-                CPF = "987.654.321-00",
-                Cidade = "Rio de Janeiro",
-                Estado = "RJ"
-            }
-        };
+                    new ClientePreferencial
+                    {
+                        Nome = "João Silva",
+                        Email = "joao.silva@email.com",
+                        Telefone = "(11) 99999-9999",
+                        CPF = "123.456.789-00",
+                        Cidade = "São Paulo",
+                        Estado = "SP"
+                    },
+                    new ClientePreferencial
+                    {
+                        Nome = "Maria Santos",
+                        Email = "maria.santos@email.com",
+                        Telefone = "(21) 98888-8888",
+                        CPF = "987.654.321-00",
+                        Cidade = "Rio de Janeiro",
+                        Estado = "RJ"
+                    }
+                };
                 _context.ClientesPreferenciais.AddRange(clientes);
 
                 await _context.SaveChangesAsync();
 
-                // Criar poltronas para os voos
                 foreach (var voo in voos)
                 {
                     await CriarPoltronasParaVoo(voo.VooId, aeronave.NumeroPoltronas);
@@ -189,12 +187,15 @@ namespace SistemaAereo.Controllers
             }
         }
 
+        // =============================================
+        // MÉTODOS PRIVADOS AUXILIARES
+        // =============================================
+
         private async Task CriarPoltronasParaVoo(int vooId, int numeroPoltronas)
         {
             var poltronas = new List<Poltrona>();
             var random = new Random();
 
-            // Preços base por tipo de classe
             var precos = new Dictionary<string, decimal>
             {
                 ["Primeira"] = 800.00m,

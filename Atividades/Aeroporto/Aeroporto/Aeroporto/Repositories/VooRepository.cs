@@ -10,12 +10,19 @@ namespace SistemaAereo.Repositories
     {
         private readonly AeroportoContext _context;
 
+        // =============================================
+        // CONSTRUTOR
+        // =============================================
+
         public VooRepository(AeroportoContext context) : base(context)
         {
             _context = context;
         }
 
-        // CONSULTAS COMPLEXAS COM INCLUDE
+        // =============================================
+        // IMPLEMENTAÇÃO - CONSULTAS COMPLEXAS COM INCLUDE
+        // =============================================
+
         public async Task<IEnumerable<Voo>> GetVoosCompletosAsync()
         {
             return await _dbSet
@@ -54,7 +61,10 @@ namespace SistemaAereo.Repositories
                 .FirstOrDefaultAsync(v => v.VooId == id);
         }
 
-        // CONSULTAS FILTRADAS
+        // =============================================
+        // IMPLEMENTAÇÃO - CONSULTAS FILTRADAS
+        // =============================================
+
         public async Task<IEnumerable<Voo>> GetProximosVoosAsync(int quantidade = 5)
         {
             return await _dbSet
@@ -106,7 +116,10 @@ namespace SistemaAereo.Repositories
                 .ToListAsync();
         }
 
-        // CONSULTAS COM FILTROS COMBINADOS
+        // =============================================
+        // IMPLEMENTAÇÃO - CONSULTAS COM FILTROS COMBINADOS
+        // =============================================
+
         public async Task<IEnumerable<Voo>> GetVoosComFiltrosAsync(
             int? aeroportoOrigemId = null,
             int? aeroportoDestinoId = null,
@@ -122,7 +135,6 @@ namespace SistemaAereo.Repositories
                 .Include(v => v.Aeronave)
                 .AsQueryable();
 
-            // Aplicar filtros
             if (aeroportoOrigemId.HasValue)
                 query = query.Where(v => v.AeroportoOrigemId == aeroportoOrigemId.Value);
 
@@ -149,7 +161,10 @@ namespace SistemaAereo.Repositories
                 .ToListAsync();
         }
 
-        // VALIDAÇÕES E VERIFICAÇÕES
+        // =============================================
+        // IMPLEMENTAÇÃO - VALIDAÇÕES E VERIFICAÇÕES
+        // =============================================
+
         public async Task<bool> NumeroVooExistsAsync(string numeroVoo, int? excludeId = null)
         {
             var query = _dbSet.AsNoTracking().Where(v => v.NumeroVoo == numeroVoo);
@@ -181,12 +196,13 @@ namespace SistemaAereo.Repositories
                 .AnyAsync(p => p.VooId == vooId && !p.Disponivel);
         }
 
-        // ESTATÍSTICAS E RELATÓRIOS
+        // =============================================
+        // IMPLEMENTAÇÃO - ESTATÍSTICAS E RELATÓRIOS
+        // =============================================
+
         public async Task<int> GetTotalVoosAsync()
         {
-            return await _dbSet
-                .AsNoTracking()
-                .CountAsync();
+            return await _dbSet.AsNoTracking().CountAsync();
         }
 
         public async Task<int> GetTotalVoosPorAeroportoAsync(int aeroportoId)
@@ -217,7 +233,10 @@ namespace SistemaAereo.Repositories
                 .CountAsync(p => p.VooId == vooId && !p.Disponivel);
         }
 
-        // CONSULTAS ESPECIALIZADAS PARA DASHBOARD
+        // =============================================
+        // IMPLEMENTAÇÃO - CONSULTAS ESPECIALIZADAS
+        // =============================================
+
         public async Task<IEnumerable<Voo>> GetVoosHojeAsync()
         {
             var hoje = DateTime.Today;
@@ -268,18 +287,20 @@ namespace SistemaAereo.Repositories
             return estatisticas;
         }
 
-        // OPERAÇÕES EM LOTE
+        // =============================================
+        // IMPLEMENTAÇÃO - OPERAÇÕES EM LOTE
+        // =============================================
+
         public async Task AtualizarStatusVoosAsync()
         {
-            // Implementação para atualizar status de voos (ex: cancelar voos antigos)
             var voosAntigos = await _dbSet
                 .Where(v => v.HorarioSaida < DateTime.Now.AddMonths(-6))
                 .ToListAsync();
 
-            // Lógica de atualização em lote
+            // Lógica de atualização em lote pode ser implementada aqui
             foreach (var voo in voosAntigos)
             {
-                // Operações em lote podem ser implementadas aqui
+                // Operações em lote
             }
 
             await _context.SaveChangesAsync();
@@ -300,14 +321,17 @@ namespace SistemaAereo.Repositories
 
                 if (ocupacao < percentualMinimo)
                 {
-                    // Lógica para cancelar voo pode ser implementada aqui
+                    // Lógica para cancelar voo
                 }
             }
 
             await _context.SaveChangesAsync();
         }
 
-        // CONSULTAS PAGINADAS
+        // =============================================
+        // IMPLEMENTAÇÃO - CONSULTAS PAGINADAS
+        // =============================================
+
         public async Task<(IEnumerable<Voo> Voos, int TotalCount)> GetVoosPaginadosAsync(
             int pagina = 1,
             int itensPorPagina = 10,
@@ -321,7 +345,6 @@ namespace SistemaAereo.Repositories
                 .Include(v => v.Aeronave)
                 .AsQueryable();
 
-            // Aplicar ordenação
             query = ordenacao?.ToLower() switch
             {
                 "numero" => ascendente ? query.OrderBy(v => v.NumeroVoo) : query.OrderByDescending(v => v.NumeroVoo),
@@ -339,7 +362,10 @@ namespace SistemaAereo.Repositories
             return (voos, totalCount);
         }
 
-        // OVERRIDE DOS MÉTODOS BASE PARA APLICAR ASNOTRACKING
+        // =============================================
+        // IMPLEMENTAÇÃO - OVERRIDE DOS MÉTODOS BASE
+        // =============================================
+
         public override async Task<IEnumerable<Voo>> GetAllAsync()
         {
             return await _dbSet

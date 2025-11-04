@@ -5,6 +5,10 @@ namespace SistemaAereo.Models
 {
     public class Voo
     {
+        // =============================================
+        // PROPRIEDADES PRINCIPAIS
+        // =============================================
+
         [Key]
         public int VooId { get; set; }
 
@@ -25,6 +29,10 @@ namespace SistemaAereo.Models
         [Display(Name = "Aeronave")]
         public int AeronaveId { get; set; }
 
+        // =============================================
+        // PROPRIEDADES DE HORÁRIO
+        // =============================================
+
         [Required(ErrorMessage = "O horário de saída é obrigatório")]
         [Display(Name = "Horário de Saída")]
         public DateTime HorarioSaida { get; set; }
@@ -33,7 +41,10 @@ namespace SistemaAereo.Models
         [Display(Name = "Horário de Chegada Previsto")]
         public DateTime HorarioChegadaPrevisto { get; set; }
 
-        // Relacionamentos
+        // =============================================
+        // RELACIONAMENTOS
+        // =============================================
+
         [ForeignKey("AeroportoOrigemId")]
         public virtual Aeroporto AeroportoOrigem { get; set; }
 
@@ -46,6 +57,10 @@ namespace SistemaAereo.Models
         public virtual ICollection<Escala> Escalas { get; set; }
         public virtual ICollection<Poltrona> Poltronas { get; set; }
         public virtual ICollection<Passagem> Passagens { get; set; }
+
+        // =============================================
+        // CONSTRUTOR
+        // =============================================
 
         public Voo()
         {

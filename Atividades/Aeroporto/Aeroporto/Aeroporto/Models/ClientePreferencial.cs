@@ -4,6 +4,10 @@ namespace SistemaAereo.Models
 {
     public class ClientePreferencial
     {
+        // =============================================
+        // PROPRIEDADES PRINCIPAIS
+        // =============================================
+
         [Key]
         public int ClienteId { get; set; }
 
@@ -24,6 +28,10 @@ namespace SistemaAereo.Models
         [DataType(DataType.Date)]
         public DateTime? DataNascimento { get; set; }
 
+        // =============================================
+        // PROPRIEDADES DE ENDEREÇO
+        // =============================================
+
         [StringLength(200)]
         public string Endereco { get; set; }
 
@@ -36,8 +44,11 @@ namespace SistemaAereo.Models
         [StringLength(9)]
         public string CEP { get; set; }
 
-        public DateTime DataCadastro { get; set; } = DateTime.Now;
+        // =============================================
+        // PROPRIEDADES DE CONTROLE
+        // =============================================
 
+        public DateTime DataCadastro { get; set; } = DateTime.Now;
         public bool Ativo { get; set; } = true;
     }
 }

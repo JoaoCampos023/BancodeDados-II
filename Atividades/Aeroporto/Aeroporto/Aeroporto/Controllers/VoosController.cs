@@ -15,6 +15,10 @@ namespace SistemaAereo.Controllers
             _context = context;
         }
 
+        // =============================================
+        // MÉTODOS PRINCIPAIS - CRUD
+        // =============================================
+
         // GET: Voos
         public async Task<IActionResult> Index()
         {
@@ -35,7 +39,7 @@ namespace SistemaAereo.Controllers
             return View(new Voo());
         }
 
-        // POST: Voos/Create - VERSÃO MAIS SIMPLES
+        // POST: Voos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
@@ -56,7 +60,6 @@ namespace SistemaAereo.Controllers
                 Console.WriteLine($"HorarioSaida: {HorarioSaida}");
                 Console.WriteLine($"HorarioChegadaPrevisto: {HorarioChegadaPrevisto}");
 
-                // Criar objeto Voo manualmente
                 var voo = new Voo
                 {
                     NumeroVoo = NumeroVoo?.Trim().ToUpper(),
@@ -67,21 +70,7 @@ namespace SistemaAereo.Controllers
                     HorarioChegadaPrevisto = HorarioChegadaPrevisto
                 };
 
-                // Validações manuais
-                if (AeroportoOrigemId == AeroportoDestinoId)
-                {
-                    ModelState.AddModelError("AeroportoDestinoId", "O aeroporto de destino deve ser diferente do aeroporto de origem.");
-                }
-
-                if (HorarioChegadaPrevisto <= HorarioSaida)
-                {
-                    ModelState.AddModelError("HorarioChegadaPrevisto", "O horário de chegada deve ser posterior ao horário de saída.");
-                }
-
-                if (await _context.Voos.AnyAsync(v => v.NumeroVoo == NumeroVoo))
-                {
-                    ModelState.AddModelError("NumeroVoo", "Este número de voo já está cadastrado.");
-                }
+                ValidarVoo(voo);
 
                 if (ModelState.IsValid)
                 {
@@ -115,6 +104,78 @@ namespace SistemaAereo.Controllers
             }
         }
 
+        // GET: Voos/Details/5
+        public async Task<IActionResult> Details(int id)
+        {
+            var voo = await _context.Voos
+                .Include(v => v.AeroportoOrigem)
+                .Include(v => v.AeroportoDestino)
+                .Include(v => v.Aeronave)
+                .FirstOrDefaultAsync(v => v.VooId == id);
+
+            if (voo == null) return RedirectToAction(nameof(Index));
+
+            return View(voo);
+        }
+
+        // GET: Voos/Edit/5
+        public async Task<IActionResult> Edit(int id)
+        {
+            var voo = await _context.Voos.FindAsync(id);
+            if (voo == null) return RedirectToAction(nameof(Index));
+
+            await CarregarViewBags();
+            return View(voo);
+        }
+
+        // POST: Voos/Edit/5
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, Voo voo)
+        {
+            if (id != voo.VooId) return RedirectToAction(nameof(Index));
+
+            if (ModelState.IsValid)
+            {
+                _context.Update(voo);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            await CarregarViewBags();
+            return View(voo);
+        }
+
+        // GET: Voos/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            var voo = await _context.Voos
+                .Include(v => v.AeroportoOrigem)
+                .Include(v => v.AeroportoDestino)
+                .Include(v => v.Aeronave)
+                .FirstOrDefaultAsync(v => v.VooId == id);
+
+            if (voo == null) return RedirectToAction(nameof(Index));
+
+            return View(voo);
+        }
+
+        // POST: Voos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var voo = await _context.Voos.FindAsync(id);
+            if (voo != null)
+            {
+                _context.Voos.Remove(voo);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        // =============================================
+        // MÉTODOS PRIVADOS AUXILIARES
+        // =============================================
+
         private async Task CarregarViewBags()
         {
             var aeroportos = await _context.Aeroportos
@@ -142,68 +203,22 @@ namespace SistemaAereo.Controllers
                 .ToList();
         }
 
-        // Ações básicas restantes
-        public async Task<IActionResult> Details(int id)
+        private async void ValidarVoo(Voo voo)
         {
-            var voo = await _context.Voos
-                .Include(v => v.AeroportoOrigem)
-                .Include(v => v.AeroportoDestino)
-                .Include(v => v.Aeronave)
-                .FirstOrDefaultAsync(v => v.VooId == id);
-
-            if (voo == null) return RedirectToAction(nameof(Index));
-
-            return View(voo);
-        }
-
-        public async Task<IActionResult> Edit(int id)
-        {
-            var voo = await _context.Voos.FindAsync(id);
-            if (voo == null) return RedirectToAction(nameof(Index));
-
-            await CarregarViewBags();
-            return View(voo);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(int id, Voo voo)
-        {
-            if (id != voo.VooId) return RedirectToAction(nameof(Index));
-
-            if (ModelState.IsValid)
+            if (voo.AeroportoOrigemId == voo.AeroportoDestinoId)
             {
-                _context.Update(voo);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("AeroportoDestinoId", "O aeroporto de destino deve ser diferente do aeroporto de origem.");
             }
 
-            await CarregarViewBags();
-            return View(voo);
-        }
-
-        public async Task<IActionResult> Delete(int id)
-        {
-            var voo = await _context.Voos
-                .Include(v => v.AeroportoOrigem)
-                .Include(v => v.AeroportoDestino)
-                .Include(v => v.Aeronave)
-                .FirstOrDefaultAsync(v => v.VooId == id);
-
-            if (voo == null) return RedirectToAction(nameof(Index));
-
-            return View(voo);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var voo = await _context.Voos.FindAsync(id);
-            if (voo != null)
+            if (voo.HorarioChegadaPrevisto <= voo.HorarioSaida)
             {
-                _context.Voos.Remove(voo);
-                await _context.SaveChangesAsync();
+                ModelState.AddModelError("HorarioChegadaPrevisto", "O horário de chegada deve ser posterior ao horário de saída.");
             }
-            return RedirectToAction(nameof(Index));
+
+            if (await _context.Voos.AnyAsync(v => v.NumeroVoo == voo.NumeroVoo))
+            {
+                ModelState.AddModelError("NumeroVoo", "Este número de voo já está cadastrado.");
+            }
         }
     }
 }

@@ -4,6 +4,10 @@ namespace SistemaAereo.Models
 {
     public class Passagem
     {
+        // =============================================
+        // PROPRIEDADES DE IDENTIFICAÇÃO
+        // =============================================
+
         [Key]
         public int PassagemId { get; set; }
 
@@ -20,6 +24,10 @@ namespace SistemaAereo.Models
         [StringLength(20)]
         public string NumeroBilhete { get; set; }
 
+        // =============================================
+        // PROPRIEDADES DE DADOS DA PASSAGEM
+        // =============================================
+
         [Required]
         public DateTime DataEmissao { get; set; } = DateTime.Now;
 
@@ -33,7 +41,10 @@ namespace SistemaAereo.Models
         [StringLength(50)]
         public string Classe { get; set; } // Economica, Executiva, Primeira
 
-        // Relacionamentos
+        // =============================================
+        // RELACIONAMENTOS
+        // =============================================
+
         public virtual Voo Voo { get; set; }
         public virtual ClientePreferencial Cliente { get; set; }
         public virtual Poltrona Poltrona { get; set; }

@@ -1,25 +1,53 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaAereo.Data;
 using SistemaAereo.Models;
+using SistemaAereo.Repositories.Interfaces;
 
 namespace SistemaAereo.Repositories
 {
     public interface IPassagemRepository : IRepository<Passagem>
     {
+        // =============================================
+        // CONSULTAS COMPLEXAS COM INCLUDE
+        // =============================================
+
         Task<IEnumerable<Passagem>> GetPassagensCompletasAsync();
         Task<Passagem> GetPassagemCompletaAsync(int id);
+
+        // =============================================
+        // CONSULTAS FILTRADAS
+        // =============================================
+
         Task<IEnumerable<Passagem>> GetPassagensPorClienteAsync(int clienteId);
         Task<IEnumerable<Passagem>> GetPassagensPorVooAsync(int vooId);
+        Task<IEnumerable<Passagem>> GetPassagensPorPeriodoAsync(DateTime inicio, DateTime fim);
+
+        // =============================================
+        // VALIDAÇÕES E VERIFICAÇÕES
+        // =============================================
+
         Task<bool> NumeroBilheteExistsAsync(string numeroBilhete);
         Task<bool> PoltronaOcupadaAsync(int vooId, int poltronaId);
+
+        // =============================================
+        // ESTATÍSTICAS E RELATÓRIOS
+        // =============================================
+
         Task<int> GetTotalPassagensVendidasPorVooAsync(int vooId);
         Task<decimal> GetFaturamentoPorVooAsync(int vooId);
-        Task<IEnumerable<Passagem>> GetPassagensPorPeriodoAsync(DateTime inicio, DateTime fim);
     }
+
+    // =============================================
+    // IMPLEMENTAÇÃO DO REPOSITÓRIO
+    // =============================================
 
     public class PassagemRepository : Repository<Passagem>, IPassagemRepository
     {
         public PassagemRepository(AeroportoContext context) : base(context) { }
+
+        // =============================================
+        // IMPLEMENTAÇÃO - CONSULTAS COMPLEXAS
+        // =============================================
 
         public async Task<IEnumerable<Passagem>> GetPassagensCompletasAsync()
         {
@@ -49,6 +77,10 @@ namespace SistemaAereo.Repositories
                 .FirstOrDefaultAsync(p => p.PassagemId == id);
         }
 
+        // =============================================
+        // IMPLEMENTAÇÃO - CONSULTAS FILTRADAS
+        // =============================================
+
         public async Task<IEnumerable<Passagem>> GetPassagensPorClienteAsync(int clienteId)
         {
             return await _dbSet
@@ -74,6 +106,21 @@ namespace SistemaAereo.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Passagem>> GetPassagensPorPeriodoAsync(DateTime inicio, DateTime fim)
+        {
+            return await _dbSet
+                .AsNoTracking()
+                .Include(p => p.Voo)
+                .Include(p => p.Cliente)
+                .Where(p => p.DataEmissao >= inicio && p.DataEmissao <= fim)
+                .OrderByDescending(p => p.DataEmissao)
+                .ToListAsync();
+        }
+
+        // =============================================
+        // IMPLEMENTAÇÃO - VALIDAÇÕES
+        // =============================================
+
         public async Task<bool> NumeroBilheteExistsAsync(string numeroBilhete)
         {
             return await _dbSet.AnyAsync(p => p.NumeroBilhete == numeroBilhete);
@@ -87,6 +134,10 @@ namespace SistemaAereo.Repositories
                 p.Status != "Cancelada");
         }
 
+        // =============================================
+        // IMPLEMENTAÇÃO - ESTATÍSTICAS
+        // =============================================
+
         public async Task<int> GetTotalPassagensVendidasPorVooAsync(int vooId)
         {
             return await _dbSet.CountAsync(p =>
@@ -99,17 +150,6 @@ namespace SistemaAereo.Repositories
             return await _dbSet
                 .Where(p => p.VooId == vooId && p.Status != "Cancelada")
                 .SumAsync(p => p.Preco);
-        }
-
-        public async Task<IEnumerable<Passagem>> GetPassagensPorPeriodoAsync(DateTime inicio, DateTime fim)
-        {
-            return await _dbSet
-                .AsNoTracking()
-                .Include(p => p.Voo)
-                .Include(p => p.Cliente)
-                .Where(p => p.DataEmissao >= inicio && p.DataEmissao <= fim)
-                .OrderByDescending(p => p.DataEmissao)
-                .ToListAsync();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿// Controllers/AeronavesController.cs
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SistemaAereo.Models;
 using SistemaAereo.Repositories.Interfaces;
@@ -18,6 +17,10 @@ namespace SistemaAereo.Controllers
             _aeronaveRepository = aeronaveRepository;
             _logger = logger;
         }
+
+        // =============================================
+        // MÉTODOS PRINCIPAIS - CRUD
+        // =============================================
 
         public async Task<IActionResult> Index()
         {

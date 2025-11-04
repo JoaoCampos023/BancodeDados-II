@@ -18,6 +18,10 @@ namespace SistemaAereo.Controllers
             _logger = logger;
         }
 
+        // =============================================
+        // MÉTODOS PRINCIPAIS - CRUD
+        // =============================================
+
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
@@ -175,6 +179,10 @@ namespace SistemaAereo.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        // =============================================
+        // MÉTODOS ADICIONAIS
+        // =============================================
 
         // GET: Clientes/MalaDireta
         public async Task<IActionResult> MalaDireta()
