@@ -2,6 +2,7 @@
 using SistemaAereo.Data;
 using SistemaAereo.Models;
 using SistemaAereo.Repositories;
+using SistemaAereo.Repositories.Interfaces;
 
 public class AeronaveRepository : Repository<Aeronave>, IAeronaveRepository
 {

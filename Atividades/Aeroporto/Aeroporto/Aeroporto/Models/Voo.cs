@@ -45,11 +45,13 @@ namespace SistemaAereo.Models
 
         public virtual ICollection<Escala> Escalas { get; set; }
         public virtual ICollection<Poltrona> Poltronas { get; set; }
+        public virtual ICollection<Passagem> Passagens { get; set; }
 
         public Voo()
         {
             Escalas = new HashSet<Escala>();
             Poltronas = new HashSet<Poltrona>();
+            Passagens = new HashSet<Passagem>();
         }
     }
 }

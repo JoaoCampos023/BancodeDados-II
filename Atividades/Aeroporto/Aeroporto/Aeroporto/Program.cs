@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SistemaAereo.Data;
 using SistemaAereo.Models;
 using SistemaAereo.Repositories;
+using SistemaAereo.Repositories.Interfaces;
 using SistemaAereo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,12 +15,12 @@ builder.Services.AddDbContext<AeroportoContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Registro dos repositórios
-builder.Services.AddScoped<IClientePreferencialRepository, ClientePreferencialRepository>();
+builder.Services.AddScoped<IVooRepository, VooRepository>();
 builder.Services.AddScoped<IAeronaveRepository, AeronaveRepository>();
 builder.Services.AddScoped<IAeroportoRepository, AeroportoRepository>();
-builder.Services.AddScoped<IVooRepository, VooRepository>();
-builder.Services.AddScoped<IRepository<Aeroporto>, Repository<Aeroporto>>();
-builder.Services.AddScoped<IRepository<Aeronave>, Repository<Aeronave>>();
+builder.Services.AddScoped<IClientePreferencialRepository, ClientePreferencialRepository>();
+builder.Services.AddScoped<IPassagemRepository, PassagemRepository>();
+builder.Services.AddScoped<IPoltronaRepository, PoltronaRepository>();
 
 var app = builder.Build();
 

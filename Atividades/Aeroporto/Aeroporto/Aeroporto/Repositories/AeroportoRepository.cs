@@ -1,15 +1,10 @@
-﻿using SistemaAereo.Models;
+﻿using Microsoft.EntityFrameworkCore;
 using SistemaAereo.Data;
-using Microsoft.EntityFrameworkCore;
+using SistemaAereo.Models;
+using SistemaAereo.Repositories.Interfaces;
 
 namespace SistemaAereo.Repositories
 {
-    public interface IAeroportoRepository : IRepository<Aeroporto>
-    {
-        Task<bool> CodigoIATAExistsAsync(string codigoIATA, int? excludeId = null);
-        Task<bool> HasVoosAsync(int aeroportoId);
-    }
-
     public class AeroportoRepository : Repository<Aeroporto>, IAeroportoRepository
     {
         public AeroportoRepository(AeroportoContext context) : base(context) { }

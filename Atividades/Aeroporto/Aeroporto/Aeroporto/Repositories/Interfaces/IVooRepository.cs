@@ -1,7 +1,7 @@
 ﻿using SistemaAereo.Models;
 using System.Linq.Expressions;
 
-namespace SistemaAereo.Repositories
+namespace SistemaAereo.Repositories.Interfaces
 {
     public interface IVooRepository : IRepository<Voo>
     {

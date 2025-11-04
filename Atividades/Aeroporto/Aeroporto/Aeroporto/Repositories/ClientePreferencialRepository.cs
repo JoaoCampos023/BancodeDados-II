@@ -1,17 +1,10 @@
-﻿using SistemaAereo.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaAereo.Data;
 using SistemaAereo.Models;
-using Microsoft.EntityFrameworkCore;
+using SistemaAereo.Repositories.Interfaces;
 
 namespace SistemaAereo.Repositories
 {
-    public interface IClientePreferencialRepository : IRepository<ClientePreferencial>
-    {
-        Task<IEnumerable<ClientePreferencial>> GetClientesAtivosAsync();
-        Task<bool> EmailExistsAsync(string email, int? excludeId = null);
-        Task<bool> CPFExistsAsync(string cpf, int? excludeId = null);
-        Task<int> GetTotalClientesAtivosAsync();
-    }
-
     public class ClientePreferencialRepository : Repository<ClientePreferencial>, IClientePreferencialRepository
     {
         public ClientePreferencialRepository(AeroportoContext context) : base(context) { }

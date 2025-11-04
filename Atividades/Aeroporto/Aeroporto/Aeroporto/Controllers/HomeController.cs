@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaAereo.Data;
 using SistemaAereo.Models;
-using SistemaAereo.Repositories;
+using SistemaAereo.Repositories.Interfaces;
 
 namespace SistemaAereo.Controllers
 {
@@ -27,25 +27,48 @@ namespace SistemaAereo.Controllers
 
         public async Task<IActionResult> Index()
         {
-            try
-            {
-                var dashboard = new DashboardViewModel
-                {
-                    TotalVoos = await _context.Voos.CountAsync(),
-                    TotalClientes = await _clienteRepository.GetTotalClientesAtivosAsync(),
-                    TotalAeronaves = await _context.Aeronaves.CountAsync(),
-                    TotalAeroportos = await _context.Aeroportos.CountAsync(),
-                    ProximosVoos = (await _vooRepository.GetProximosVoosAsync(5)).ToList()
-                };
+            var model = new DashboardViewModel();
 
-                return View(dashboard);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Erro ao carregar dashboard");
-                TempData["Erro"] = "Erro ao carregar dashboard";
-                return View(new DashboardViewModel());
-            }
+            // Dados existentes
+            model.TotalVoos = await _context.Voos.CountAsync(v => v.HorarioSaida > DateTime.Now);
+            model.TotalClientes = await _context.ClientesPreferenciais.CountAsync(c => c.Ativo);
+            model.TotalAeronaves = await _context.Aeronaves.CountAsync();
+            model.TotalAeroportos = await _context.Aeroportos.CountAsync();
+            model.ProximosVoos = await _context.Voos
+                .Include(v => v.AeroportoOrigem)
+                .Include(v => v.AeroportoDestino)
+                .Include(v => v.Aeronave)
+                .Where(v => v.HorarioSaida > DateTime.Now)
+                .OrderBy(v => v.HorarioSaida)
+                .Take(5)
+                .ToListAsync();
+
+            // NOVOS DADOS DAS PASSAGENS
+            model.TotalPassagens = await _context.Passagens.CountAsync();
+            model.PassagensConfirmadas = await _context.Passagens.CountAsync(p => p.Status == "Confirmada");
+            model.PassagensCheckin = await _context.Passagens.CountAsync(p => p.Status == "Check-in");
+            model.PassagensEmbarcadas = await _context.Passagens.CountAsync(p => p.Status == "Embarcada");
+            model.PassagensCanceladas = await _context.Passagens.CountAsync(p => p.Status == "Cancelada");
+
+            model.FaturamentoTotal = await _context.Passagens
+                .Where(p => p.Status != "Cancelada")
+                .SumAsync(p => p.Preco);
+
+            var inicioMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            var fimMes = inicioMes.AddMonths(1).AddDays(-1);
+
+            model.FaturamentoMesAtual = await _context.Passagens
+                .Where(p => p.DataEmissao >= inicioMes && p.DataEmissao <= fimMes && p.Status != "Cancelada")
+                .SumAsync(p => p.Preco);
+
+            model.PassagensRecentes = await _context.Passagens
+                .Include(p => p.Cliente)
+                .Include(p => p.Voo)
+                .OrderByDescending(p => p.DataEmissao)
+                .Take(5)
+                .ToListAsync();
+
+            return View(model);
         }
 
         public IActionResult Privacy()

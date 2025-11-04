@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SistemaAereo.Models;
-using SistemaAereo.Repositories;
+using SistemaAereo.Repositories.Interfaces;
 
 namespace SistemaAereo.Controllers
 {

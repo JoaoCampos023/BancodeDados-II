@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaAereo.Models
 {
@@ -13,32 +12,30 @@ namespace SistemaAereo.Models
 
         [Required]
         [StringLength(10)]
-        [Display(Name = "Número da Poltrona")]
         public string NumeroPoltrona { get; set; }
 
         [Required]
-        [Display(Name = "Disponível")]
         public bool Disponivel { get; set; } = true;
 
+        [Required]
         [StringLength(20)]
-        [Display(Name = "Localização")]
         public string Localizacao { get; set; } // "Janela", "Corredor", "Meio"
 
         [StringLength(20)]
-        [Display(Name = "Tipo")]
         public string Tipo { get; set; } // "Economica", "Executiva", "Primeira"
 
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        [Display(Name = "Preço")]
+        [DataType(DataType.Currency)]
         public decimal Preco { get; set; }
 
-        // Relacionamentos
-        [ForeignKey("VooId")]
+        // Relacionamento com Passagem
+        public virtual ICollection<Passagem> Passagens { get; set; }
+
+        // Relacionamento com Voo
         public virtual Voo Voo { get; set; }
 
         public Poltrona()
         {
+            Passagens = new HashSet<Passagem>();
         }
     }
 }

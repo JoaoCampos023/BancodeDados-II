@@ -178,6 +178,58 @@ namespace SistemaAereo.Migrations
                     b.ToTable("Escalas");
                 });
 
+            modelBuilder.Entity("SistemaAereo.Models.Passagem", b =>
+                {
+                    b.Property<int>("PassagemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PassagemId"));
+
+                    b.Property<string>("Classe")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataEmissao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NumeroBilhete")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("PoltronaId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("VooId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PassagemId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("NumeroBilhete")
+                        .IsUnique();
+
+                    b.HasIndex("PoltronaId");
+
+                    b.HasIndex("VooId");
+
+                    b.ToTable("Passagens");
+                });
+
             modelBuilder.Entity("SistemaAereo.Models.Poltrona", b =>
                 {
                     b.Property<int>("PoltronaId")
@@ -278,6 +330,33 @@ namespace SistemaAereo.Migrations
                     b.Navigation("Voo");
                 });
 
+            modelBuilder.Entity("SistemaAereo.Models.Passagem", b =>
+                {
+                    b.HasOne("SistemaAereo.Models.ClientePreferencial", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SistemaAereo.Models.Poltrona", "Poltrona")
+                        .WithMany("Passagens")
+                        .HasForeignKey("PoltronaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SistemaAereo.Models.Voo", "Voo")
+                        .WithMany("Passagens")
+                        .HasForeignKey("VooId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Poltrona");
+
+                    b.Navigation("Voo");
+                });
+
             modelBuilder.Entity("SistemaAereo.Models.Poltrona", b =>
                 {
                     b.HasOne("SistemaAereo.Models.Voo", "Voo")
@@ -330,9 +409,16 @@ namespace SistemaAereo.Migrations
                     b.Navigation("VoosOrigem");
                 });
 
+            modelBuilder.Entity("SistemaAereo.Models.Poltrona", b =>
+                {
+                    b.Navigation("Passagens");
+                });
+
             modelBuilder.Entity("SistemaAereo.Models.Voo", b =>
                 {
                     b.Navigation("Escalas");
+
+                    b.Navigation("Passagens");
 
                     b.Navigation("Poltronas");
                 });

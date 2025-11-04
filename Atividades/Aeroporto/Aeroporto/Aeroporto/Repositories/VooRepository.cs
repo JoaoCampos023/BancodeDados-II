@@ -2,6 +2,7 @@
 using SistemaAereo.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using SistemaAereo.Repositories.Interfaces;
 
 namespace SistemaAereo.Repositories
 {
