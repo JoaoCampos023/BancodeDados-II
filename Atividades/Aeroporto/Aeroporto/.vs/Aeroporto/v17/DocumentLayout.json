@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aeroporto\\aeroporto\\aeroporto\\controllers\\passagenscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|solutionrelative:aeroporto\\controllers\\passagenscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aeroporto\\aeroporto\\aeroporto\\controllers\\vooscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|solutionrelative:aeroporto\\controllers\\vooscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aeroporto\\aeroporto\\aeroporto\\controllers\\aeronavescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|solutionrelative:aeroporto\\controllers\\aeronavescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|c:\\users\\jo\\documents\\aulas - facul\\banco de dados ii\\atividades\\aeroporto\\aeroporto\\aeroporto\\views\\debug\\dados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EECDF370-0EDA-46DD-85DB-5F72DF166668}|Aeroporto\\SistemaAereo.csproj|solutionrelative:aeroporto\\views\\debug\\dados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,15 +31,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PassagensController.cs",
-              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Controllers\\PassagensController.cs",
-              "RelativeDocumentMoniker": "Aeroporto\\Controllers\\PassagensController.cs",
-              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Controllers\\PassagensController.cs",
-              "RelativeToolTip": "Aeroporto\\Controllers\\PassagensController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMCAAAAAAAAAAAAAA==",
+              "Title": "VoosController.cs",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Controllers\\VoosController.cs",
+              "RelativeDocumentMoniker": "Aeroporto\\Controllers\\VoosController.cs",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Controllers\\VoosController.cs",
+              "RelativeToolTip": "Aeroporto\\Controllers\\VoosController.cs",
+              "ViewState": "AgIAAAABAAAAAAAAAAAAwCgBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T23:33:39.827Z",
+              "WhenOpened": "2025-11-07T23:09:12.47Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dados.cshtml",
+              "DocumentMoniker": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Debug\\Dados.cshtml",
+              "RelativeDocumentMoniker": "Aeroporto\\Views\\Debug\\Dados.cshtml",
+              "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Views\\Debug\\Dados.cshtml",
+              "RelativeToolTip": "Aeroporto\\Views\\Debug\\Dados.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-07T22:49:35.918Z"
             },
             {
               "$type": "Document",
@@ -45,7 +61,7 @@
               "RelativeDocumentMoniker": "Aeroporto\\Controllers\\AeronavesController.cs",
               "ToolTip": "C:\\Users\\jo\\Documents\\Aulas - Facul\\Banco de Dados II\\Atividades\\Aeroporto\\Aeroporto\\Aeroporto\\Controllers\\AeronavesController.cs",
               "RelativeToolTip": "Aeroporto\\Controllers\\AeronavesController.cs",
-              "ViewState": "AgIAAJQAAAAAAAAAAAAwwBMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIgAAAAAAAAAAAAwwBMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-04T23:33:29.603Z",
               "EditorCaption": ""

@@ -43,12 +43,12 @@ namespace SistemaAereo.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            string NumeroVoo,
-            int AeroportoOrigemId,
-            int AeroportoDestinoId,
-            int AeronaveId,
-            DateTime HorarioSaida,
-            DateTime HorarioChegadaPrevisto)
+        string NumeroVoo,
+        int AeroportoOrigemId,
+        int AeroportoDestinoId,
+        int AeronaveId,
+        DateTime HorarioSaida,
+        DateTime HorarioChegadaPrevisto)
         {
             try
             {
@@ -60,6 +60,7 @@ namespace SistemaAereo.Controllers
                 Console.WriteLine($"HorarioSaida: {HorarioSaida}");
                 Console.WriteLine($"HorarioChegadaPrevisto: {HorarioChegadaPrevisto}");
 
+                // Criar objeto Voo manualmente
                 var voo = new Voo
                 {
                     NumeroVoo = NumeroVoo?.Trim().ToUpper(),
@@ -70,12 +71,35 @@ namespace SistemaAereo.Controllers
                     HorarioChegadaPrevisto = HorarioChegadaPrevisto
                 };
 
-                ValidarVoo(voo);
+                // Validações manuais
+                if (AeroportoOrigemId == AeroportoDestinoId)
+                {
+                    ModelState.AddModelError("AeroportoDestinoId", "O aeroporto de destino deve ser diferente do aeroporto de origem.");
+                }
+
+                if (HorarioChegadaPrevisto <= HorarioSaida)
+                {
+                    ModelState.AddModelError("HorarioChegadaPrevisto", "O horário de chegada deve ser posterior ao horário de saída.");
+                }
+
+                // CORREÇÃO: Usar await e evitar operações concorrentes
+                var numeroVooExists = await _context.Voos
+                    .AsNoTracking() // Importante: usar AsNoTracking para consultas
+                    .AnyAsync(v => v.NumeroVoo == NumeroVoo);
+
+                if (numeroVooExists)
+                {
+                    ModelState.AddModelError("NumeroVoo", "Este número de voo já está cadastrado.");
+                }
 
                 if (ModelState.IsValid)
                 {
+                    // CORREÇÃO: Usar apenas uma operação de SaveChanges por transação
                     _context.Voos.Add(voo);
                     await _context.SaveChangesAsync();
+
+                    // CORREÇÃO: Criar poltronas em uma operação separada se necessário
+                    await CriarPoltronasParaVoo(voo.VooId, voo.AeronaveId);
 
                     TempData["Sucesso"] = $"Voo {voo.NumeroVoo} cadastrado com sucesso!";
                     return RedirectToAction(nameof(Index));
@@ -101,6 +125,63 @@ namespace SistemaAereo.Controllers
                 };
 
                 return View(voo);
+            }
+        }
+
+        private async Task CriarPoltronasParaVoo(int vooId, int aeronaveId)
+        {
+            try
+            {
+                // Buscar informações da aeronave
+                var aeronave = await _context.Aeronaves
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(a => a.AeronaveId == aeronaveId);
+
+                if (aeronave == null) return;
+
+                var numeroPoltronas = aeronave.NumeroPoltronas;
+                var poltronas = new List<Poltrona>();
+                var random = new Random();
+
+                for (int i = 1; i <= numeroPoltronas; i++)
+                {
+                    var fileira = (i - 1) / 6 + 1;
+                    var assento = (i - 1) % 6 + 1;
+                    var letraAssento = ((char)('A' + (assento - 1))).ToString();
+
+                    var tipo = i <= numeroPoltronas * 0.2 ? "Executiva" : "Economica";
+                    var localizacao = assento switch
+                    {
+                        1 or 6 => "Janela",
+                        2 or 5 => "Meio",
+                        3 or 4 => "Corredor",
+                        _ => "Corredor"
+                    };
+
+                    var precoBase = tipo == "Executiva" ? 500.00m : 300.00m;
+                    var preco = precoBase + (random.Next(-50, 51));
+
+                    var poltrona = new Poltrona
+                    {
+                        VooId = vooId,
+                        NumeroPoltrona = $"{fileira}{letraAssento}",
+                        Disponivel = true,
+                        Localizacao = localizacao,
+                        Tipo = tipo,
+                        Preco = preco
+                    };
+
+                    poltronas.Add(poltrona);
+                }
+
+                // CORREÇÃO: Usar uma única operação de SaveChanges
+                await _context.Poltronas.AddRangeAsync(poltronas);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                // Log do erro, mas não interrompe o fluxo principal
+                Console.WriteLine($"Erro ao criar poltronas: {ex.Message}");
             }
         }
 
@@ -178,29 +259,41 @@ namespace SistemaAereo.Controllers
 
         private async Task CarregarViewBags()
         {
-            var aeroportos = await _context.Aeroportos
-                .OrderBy(a => a.Nome)
-                .ToListAsync();
+            try
+            {
+                // CORREÇÃO: Usar AsNoTracking para consultas que não modificam dados
+                var aeroportos = await _context.Aeroportos
+                    .AsNoTracking()
+                    .OrderBy(a => a.Nome)
+                    .ToListAsync();
 
-            ViewBag.Aeroportos = aeroportos
-                .Select(a => new SelectListItem
-                {
-                    Value = a.AeroportoId.ToString(),
-                    Text = $"{a.Nome} ({a.CodigoIATA}) - {a.Cidade}"
-                })
-                .ToList();
+                ViewBag.Aeroportos = aeroportos
+                    .Select(a => new SelectListItem
+                    {
+                        Value = a.AeroportoId.ToString(),
+                        Text = $"{a.Nome} ({a.CodigoIATA}) - {a.Cidade}"
+                    })
+                    .ToList();
 
-            var aeronaves = await _context.Aeronaves
-                .OrderBy(a => a.TipoAeronave)
-                .ToListAsync();
+                var aeronaves = await _context.Aeronaves
+                    .AsNoTracking()
+                    .OrderBy(a => a.TipoAeronave)
+                    .ToListAsync();
 
-            ViewBag.Aeronaves = aeronaves
-                .Select(a => new SelectListItem
-                {
-                    Value = a.AeronaveId.ToString(),
-                    Text = $"{a.TipoAeronave} - {a.NumeroPoltronas} poltronas"
-                })
-                .ToList();
+                ViewBag.Aeronaves = aeronaves
+                    .Select(a => new SelectListItem
+                    {
+                        Value = a.AeronaveId.ToString(),
+                        Text = $"{a.TipoAeronave} - {a.NumeroPoltronas} poltronas"
+                    })
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar ViewBags: {ex.Message}");
+                ViewBag.Aeroportos = new List<SelectListItem>();
+                ViewBag.Aeronaves = new List<SelectListItem>();
+            }
         }
 
         private async void ValidarVoo(Voo voo)
