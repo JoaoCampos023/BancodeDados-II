@@ -25,9 +25,29 @@ namespace SistemaAereo.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<ClientePreferencial>> GetClientesInativosAsync()
+        {
+            return await _dbSet
+                .Where(c => !c.Ativo)
+                .OrderBy(c => c.Nome)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<ClientePreferencial>> GetAllClientesAsync()
+        {
+            return await _dbSet
+                .OrderBy(c => c.Nome)
+                .ToListAsync();
+        }
+
         public async Task<int> GetTotalClientesAtivosAsync()
         {
             return await _dbSet.CountAsync(c => c.Ativo);
+        }
+
+        public async Task<int> GetTotalClientesInativosAsync()
+        {
+            return await _dbSet.CountAsync(c => !c.Ativo);
         }
 
         // =============================================

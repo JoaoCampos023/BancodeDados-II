@@ -38,6 +38,23 @@ namespace SistemaAereo.Controllers
             }
         }
 
+        // GET: Clientes/Inativos
+        public async Task<IActionResult> Inativos()
+        {
+            try
+            {
+                var clientesInativos = await _clienteRepository.GetClientesInativosAsync();
+                ViewBag.TotalInativos = clientesInativos.Count();
+                return View(clientesInativos);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao carregar clientes inativos");
+                TempData["Erro"] = "Erro ao carregar lista de clientes inativos";
+                return View(new List<ClientePreferencial>());
+            }
+        }
+
         // GET: Clientes/Create
         public IActionResult Create()
         {
@@ -178,6 +195,34 @@ namespace SistemaAereo.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        // POST: Clientes/Reativar/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Reativar(int id)
+        {
+            try
+            {
+                var cliente = await _clienteRepository.GetByIdAsync(id);
+                if (cliente != null)
+                {
+                    cliente.Ativo = true;
+                    await _clienteRepository.UpdateAsync(cliente);
+                    TempData["Sucesso"] = "Cliente reativado com sucesso!";
+                }
+                else
+                {
+                    TempData["Erro"] = "Cliente não encontrado";
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao reativar cliente");
+                TempData["Erro"] = "Erro ao reativar cliente";
+            }
+
+            return RedirectToAction(nameof(Inativos));
         }
 
         // =============================================

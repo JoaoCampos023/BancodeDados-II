@@ -9,7 +9,10 @@ namespace SistemaAereo.Repositories.Interfaces
         // =============================================
 
         Task<IEnumerable<ClientePreferencial>> GetClientesAtivosAsync();
+        Task<IEnumerable<ClientePreferencial>> GetClientesInativosAsync();
+        Task<IEnumerable<ClientePreferencial>> GetAllClientesAsync();
         Task<int> GetTotalClientesAtivosAsync();
+        Task<int> GetTotalClientesInativosAsync();
 
         // =============================================
         // VALIDAÇÕES DE UNICIDADE
